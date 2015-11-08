@@ -5,18 +5,19 @@
 class Strip {
   public:
     void
-      setup(int _initialPin, int _stripCount),
+      setup(uint8_t _initialPin, int _stripCount),
+      setup(uint8_t _initialPin),
       set(int _strip, int _pin),
       style(int _strip, int _pixel, uint32_t _colour),
       styleAll(int _pixel, uint32_t _colour),
       show(int _strip),
-      showAll(),
+      showAll(void),
       clear(int _strip),
-      clearAll(),
+      clearAll(void),
       begin(int _strip),
-      beginAll()
+      beginAll(void)
       ;
 
   private:
-    Adafruit_NeoPixel strips[10];
+    Adafruit_NeoPixel strip[10];
 };
