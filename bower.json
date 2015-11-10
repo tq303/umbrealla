@@ -1,0 +1,13 @@
+{
+  "name": "umbrealla",
+  "version": "0.0.0",
+  "homepage": "https://github.com/tq303/umbrealla",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
