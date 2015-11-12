@@ -9,5 +9,8 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "Processing.js": "~1.4.16"
+  }
 }
