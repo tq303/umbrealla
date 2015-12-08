@@ -75,6 +75,17 @@ void Strip::beginAll(void) {
   }
 }
 
+void Strip::setBrightness(int _strip, uint8_t b) {
+  strip[_strip].setBrightness(b);
+  strip[_strip].show();
+}
+
+void Strip::setBrightnessAll(uint8_t b) {
+  for (int i = 0; i < 10; i++) {
+    setBrightness(i, b);
+  }
+}
+
 // Convert separate R,G,B into packed 32-bit RGB color.
 // Packed format is always RGB, regardless of LED strand color order.
 uint32_t Strip::Colour(uint8_t r, uint8_t g, uint8_t b) {

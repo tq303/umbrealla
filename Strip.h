@@ -15,7 +15,9 @@ class Strip {
       clear(int _strip),
       clearAll(void),
       begin(int _strip),
-      beginAll(void)
+      beginAll(void),
+      setBrightness(int _strip, uint8_t b),
+      setBrightnessAll(uint8_t b),
       ;
 
     static uint32_t
