@@ -1,39 +1,30 @@
-umbrella class
-  # default pin start 1
-  # default quantity is 8
-  # default led count 30
-  constructor
-    quantity
-    pin start
-    led count
+## Rushes
 
-set
-  # used to customize each strip
-  int strip
-  int pin
+- slow blurred shot and show title
+- slowly focus and fade out title
 
-style
-  # changes a strips led configuration
-  # on change the strips number is stored for final loop update of that strip
-  int strip
-  int led
-  int colour
+- static shot down path
+    - animate me getting closer
 
-styleAll
-  # changes style of all strips by looping above {style} function
-  int led
-  int colour
 
-show
-  # runs Neo_Pixel.show function
-  int strip
+- blur in/out shot of electronics inside
 
-showAll
-  # loops above function {show}
+- animation demonstrating proximity effect
+    - shot inside of umbrella, using my hand to show functionality
 
-begin
-  # runs Neo_Pixel.begin function
-  int strip
 
-beginAll
-    # loops above function {begin}
+- multiple illusion of shot side on view of path
+    - animate the umbrella spin as I walk past
+    - this means they can be off and I can walk past and sync them later
+
+
+- blur in to multiple illusion shot showing them bunched up in the trees
+
+- static shot down path
+    - animate me moving away
+
+## Outstanding
+
+### Examples
+    proximity/speed
+    rotating umbrella
