@@ -1,29 +1,3 @@
-#include <Adafruit_NeoPixel.h>
-#include "Strip.h"
-
-Strip strip;
-
-#define LED_COUNT = 30;
-
-void setup() {
-
-  Serial.begin(9600);
-
-  strip.setup(2);
-
-  strip.clearAll();
-  strip.beginAll();
-  strip.showAll();
-}
-
-void loop() {
-  
-//  animatePulsate(5);
-//   animatePulsateProximity();
-  animateDown();
-//  animateRotate();
-}
-
 void animateDown () {
   for(uint16_t i=0; i < 30; i++) {
     strip.styleAll(i, strip.Colour(255,255,255));
