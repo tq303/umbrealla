@@ -1,6 +1,6 @@
 #include <Adafruit_NeoPixel.h>
 
-#include "src/Strip.h"
+#include "Strip.h"
 
 #include  <SPI.h>
 #include "nRF24L01.h"
@@ -11,10 +11,11 @@ Strip strip;
 #define LED_COUNT = 30;
 
 RF24 radio(9,10);
-int msg[1];
-const uint64_t pipe = 0xE8E8F0F0E1LL;
-int SW1 = 7;
 
+const uint64_t PIPE_1 = 0xE8E8F0F0E1LL;
+const uint64_t PIPE_2 = 0xE8E8F0F0E1LL;
+
+int msg[1];
 
 void setup() {
 
@@ -27,13 +28,31 @@ void setup() {
   strip.showAll();
 
   radio.begin();
-  radio.openWritingPipe(pipe);
-  
+  radio.openReadingPipe(1, PIPE_1);
+  radio.startListening();
+
 }
 
-void loop() {
-    if (digitalRead(SW1) == HIGH){
-        msg[0] = 111;
-        radio.write(msg, 1);
+void loop(){
+
+    if (radio.available()){
+
+        radio.read(msg, 1);
+
+        Serial.println(msg[0]);
+
+        // if message received
+        if (msg[0] != 0){
+            // animate LEDs
+            msg[0] = 0;
+            delay(10);
+        } else {
+            // fade out / clear all LEDs
+        }
+
+        delay(10);
+
+    } else{
+        Serial.println("No radio available");
     }
 }
