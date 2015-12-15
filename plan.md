@@ -23,3 +23,5 @@ Send arrays each separated by the categories relevant character e.g. `u,s,c,x` t
 ### Example
 
 `u 1 , 2 , 3 . s 100 . c 0xFF , 0xFF , 0xFF . x 0 , 4 . d 1 , 2 , 3 . o 100;`
+
+`u1,2,3.s100.c0xFF,0xFF,0xFF.x0,4.d1,2,3.o100;`
