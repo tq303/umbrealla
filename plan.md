@@ -4,7 +4,7 @@ Have a two element array. Do full scan with Kinnect and ascertain the close z po
 
 # Serial Utilization
 
-Send arrays each separated by the categories relevant character e.g. `u,s,c,x` the `.` character indicates end of array. This means that the protocol can be expanded in the future.The arrays will be split into the following.
+Send arrays each separated by the categories relevant character e.g. `u,s,c,x` the `.` character indicates end of array, `,` indicates variable end and `;` indicates end of transmission. This means that the protocol can be expanded in the future.The arrays will be split into the following.
 
 - umbrellas `u`
     - 0 means off
@@ -22,4 +22,4 @@ Send arrays each separated by the categories relevant character e.g. `u,s,c,x` t
 
 ### Example
 
-`u 1 2 3 . s 100 . c 0xFF 0xFF 0xFF . x 0 4 . d 1 2 3 . o 100`
+`u 1 , 2 , 3 . s 100 . c 0xFF , 0xFF , 0xFF . x 0 , 4 . d 1 , 2 , 3 . o 100;`

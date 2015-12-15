@@ -18,5 +18,9 @@ bool Format::isExtrasArray(char m) {
 }
 
 bool Format::arrayHasParams(int&) {
-    
+    return false;
+}
+
+int Format::split() {
+    return 1;
 }
