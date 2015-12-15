@@ -1,13 +1,9 @@
 #pragma once
 
+#include <string>
+
 class Format {
     public:
-        bool
-            isUmbrellaArray(char),
-            isSpeedArray(char),
-            isExtrasArray(char),
-            arrayHasParams(int&);
-
-        int
-            split();
+        void
+            split(std::string&);
 };
