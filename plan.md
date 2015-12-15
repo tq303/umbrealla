@@ -4,15 +4,22 @@ Have a two element array. Do full scan with Kinnect and ascertain the close z po
 
 # Serial Utilization
 
-Send 4 arrays each separated by `/n` character. This means that the protocol can be expanded in the future.The arrays will be split into the following.
+Send arrays each separated by the categories relevant character e.g. `u,s,c,x` the `.` character indicates end of array. This means that the protocol can be expanded in the future.The arrays will be split into the following.
 
-- umbrellas
+- umbrellas `u`
     - 0 means off
-- speed
+- speed `s`
     - 1 x `el[0]` x `el[2]` etc
-- colour
+- colour `c`
     - RGB
-- utility
+- direction `d`
+    - type
+- utility `x`
     - kill (flag to indicate animations should stop)
     - loop count
-    - direction `0,1,2` `left,center,right`
+- offset `0`
+    - 1 x `el[0]` x `el[2]` etc
+
+### Example
+
+`u 1 2 3 . s 100 . c 0xFF 0xFF 0xFF . x 0 4 . d 1 2 3 . o 100`

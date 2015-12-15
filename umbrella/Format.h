@@ -1,8 +1,7 @@
 class Format {
     public:
-        int umbrella(int),
-            colour(int),
-            animation(int),
-            speed(int),
-            getDigit (const long, int);
+        bool isUmbrellaArray(char),
+             isSpeedArray(char),
+             isExtrasArray(char),
+             arrayHasParams(int&);
 };

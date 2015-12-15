@@ -5,23 +5,18 @@
 // 1,1,1 = colour
 // 1,1,1,1 = speed
 
-int Format::umbrella(int number) {
-    return getDigit(number, 3);
+bool Format::isUmbrellaArray(char m) {
+    return (m == 'u');
 }
 
-int Format::colour(int number) {
-    return getDigit(number, 2);
+bool Format::isSpeedArray(char m) {
+    return (m == 's');
 }
 
-int Format::animation(int number) {
-    return getDigit(number, 1);
+bool Format::isExtrasArray(char m) {
+    return (m == 'x');
 }
 
-int Format::speed(int number) {
-    return getDigit(number, 0);
-}
-
-// 0-based index pos
-int Format::getDigit (const long number, int pos) {
-    return (pos == 0) ? number % 10 : getDigit (number/10, --pos);
+bool Format::arrayHasParams(int&) {
+    
 }

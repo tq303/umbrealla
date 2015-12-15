@@ -12,10 +12,9 @@ Strip strip;
 
 RF24 radio(9,10);
 
-const uint64_t PIPE_1 = 0xE8E8F0F0E1LL;
-const uint64_t PIPE_2 = 0xE8E8F0F0E1LL;
+const uint64_t PIPE = 0xE8E8F0F0E1LL;
 
-int msg[1];
+int msg[4] = {0,0,0,0};
 
 void setup() {
 
@@ -37,20 +36,11 @@ void loop(){
 
     if (radio.available()){
 
-        radio.read(msg, 1);
+        radio.read(msg, sizeof(msg));
 
-        Serial.println(msg[0]);
-
-        // if message received
         if (msg[0] != 0){
             // animate LEDs
-            msg[0] = 0;
-            delay(10);
-        } else {
-            // fade out / clear all LEDs
         }
-
-        delay(10);
 
     } else{
         Serial.println("No radio available");
