@@ -20,6 +20,6 @@ class Format {
 
         int stringToInteger(std::string&);
 
-        std::vector<int> split(std::string&, char);
+        void splitToArray(int*, std::string&, char);
 
 };

@@ -44,7 +44,7 @@ void Format::decode(string& input) {
             }  else if (msgElementPos == 2) {
                 speed = stringToInteger(element);
             }  else if (msgElementPos == 3) {
-                cout << element << " : " << msgElementVariablePos << endl;
+                splitToArray(colour, element, ',');
             }
 
             element = "";
@@ -62,24 +62,31 @@ void Format::decode(string& input) {
         }
 
     }
+
+    cout << "umbrella : " << umbrella << endl;
+    cout << "animation : " << animation << endl;
+    cout << "speed : " << speed << endl;
+
+    for (int i = 0; i < sizeof(colour); i++) {
+        cout << "colour : " << colour[i] << endl;
+    }
+
 }
 
-vector<int> Format::split(std::string& splitDelegate, char delimiter) {
+void Format::splitToArray(int* array, string& splitDelegate, char delimiter) {
 
-    vector<int> elements;
-
+    cout << "Array size is : " << sizeof(array) << endl;
+    
     string numberStr = "";
 
-    for (int i = 0; i < splitDelegate.length(); i++) {
+    for (int i = 0; i < sizeof(array); i++) {
         if (splitDelegate[i] != delimiter) {
             numberStr += splitDelegate[i];
-        } else if (splitDelegate[i] == delimiter || i == (splitDelegate.length() - 1)) {
-            elements.push_back(stringToInteger(numberStr));
+        } else if (splitDelegate[i] == delimiter || i == (sizeof(array) - 1)) {
+            array[i] = stringToInteger(numberStr);
             numberStr = "";
         }
     }
-
-    return elements;
 }
 
 int Format::stringToInteger(string& input) {
