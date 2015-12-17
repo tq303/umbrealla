@@ -5,10 +5,26 @@
 
 class Format {
     public:
+
         Format();
 
         void
             decode(std::string&);
+
+        int stringToInteger(std::string&);
+
+        void splitToArray(int*, std::string&, char);
+
+        void
+            setUmbrella(int),
+            setSpeed(int),
+            setAnimation(int),
+            setColour(int,int,int),
+            buildCommunicationString();
+            
+        std::string getCommunicationString();
+
+    private:
 
         int
             umbrella,
@@ -18,8 +34,5 @@ class Format {
             msgElementPos,
             msgElementVariablePos;
 
-        int stringToInteger(std::string&);
-
-        void splitToArray(int*, std::string&, char);
-
+        std::string communicationString;
 };

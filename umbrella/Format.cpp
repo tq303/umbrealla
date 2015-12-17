@@ -19,6 +19,10 @@
 using namespace std;
 
 Format::Format(void) {
+    umbrella = 0;
+    animation = 0;
+    speed = 100;
+    communicationString = "";
     msgElementPos = 0;
     msgElementVariablePos = 0;
     memset(colour, 0, sizeof(colour));
@@ -76,7 +80,7 @@ void Format::decode(string& input) {
 void Format::splitToArray(int* array, string& splitDelegate, char delimiter) {
 
     cout << "Array size is : " << sizeof(array) << endl;
-    
+
     string numberStr = "";
 
     for (int i = 0; i < sizeof(array); i++) {
@@ -95,4 +99,32 @@ int Format::stringToInteger(string& input) {
     } else {
         return 0;
     }
+}
+
+void Format::setUmbrella(int _u) {
+    umbrella = _u;
+}
+void Format::setSpeed(int _s) {
+    speed = _s;
+}
+void Format::setAnimation(int _a) {
+    animation = _a;
+}
+void Format::setColour(int _r, int _g, int _b) {
+    colour[0] = _r;
+    colour[1] = _g;
+    colour[2] = _b;
+}
+void Format::buildCommunicationString() {
+    communicationString = "";
+    communicationString += to_string(umbrella) += '.';
+    communicationString += to_string(animation) += '.';
+    communicationString += to_string(speed) += '.';
+    communicationString += to_string(colour[0]) += ',';
+    communicationString += to_string(colour[1]) += ',';
+    communicationString += to_string(colour[2]);
+}
+
+string Format::getCommunicationString() {
+    return communicationString;
 }

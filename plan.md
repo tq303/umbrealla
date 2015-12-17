@@ -6,11 +6,10 @@ Have a two element array. Do full scan with Kinnect and ascertain the close z po
 
 Send arrays each separated by the categories relevant character e.g. `u,s,c,x` the `.` character indicates end of array, `,` indicates variable end and `;` indicates end of transmission. This means that the protocol can be expanded in the future.The arrays will be split into the following.
 
-- umbrellas `u`
-    - 0 means off
-- speed `s`
-    - 1 x `el[0]` x `el[2]` etc
-- colour `c`
+- umbrella
+- animation
+- speed
+- colour
     - RGB
 - direction `d`
     - type
@@ -22,6 +21,4 @@ Send arrays each separated by the categories relevant character e.g. `u,s,c,x` t
 
 ### Example
 
-`u 1 , 2 , 3 . s 100 . c 0xFF , 0xFF , 0xFF . x 0 , 4 . d 1 , 2 , 3 . o 100;`
-
-`u1,2,3.s100.c0xFF,0xFF,0xFF.x0,4.d1,2,3.o100;`
+`1.5.100.255,255,255`
