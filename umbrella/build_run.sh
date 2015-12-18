@@ -1,2 +1,2 @@
-g++ main.cpp -o main
+g++ main.cpp Format.cpp -o main
 ./main

@@ -25,7 +25,10 @@ Format::Format(void) {
     communicationString = "";
     msgElementPos = 0;
     msgElementVariablePos = 0;
-    memset(colour, 0, sizeof(colour));
+
+    colour = new int[3];
+
+    resetArray(colour, 0, 3);
 }
 
 void Format::decode(string& input) {
@@ -48,21 +51,24 @@ void Format::decode(string& input) {
             }  else if (msgElementPos == 2) {
                 speed = stringToInteger(element);
             }  else if (msgElementPos == 3) {
-                splitToArray(colour, element, ',');
+                splitToArray(colour, 3, element, ',');
             }
 
             element = "";
             msgElementPos++;
             msgElementVariablePos = 0;
+            continue;
         }
 
         if (input[i] == ',') {
             element += input[i];
             msgElementVariablePos++;
+            continue;
         }
 
         if (input[i] != ',' && input[i] != '.' && input[i] != ';') {
             element += input[i];
+            continue;
         }
 
     }
@@ -71,26 +77,35 @@ void Format::decode(string& input) {
     cout << "animation : " << animation << endl;
     cout << "speed : " << speed << endl;
 
-    for (int i = 0; i < sizeof(colour); i++) {
+    for (int i = 0; i < 3; i++) {
         cout << "colour : " << colour[i] << endl;
     }
 
 }
 
-void Format::splitToArray(int* array, string& splitDelegate, char delimiter) {
-
-    cout << "Array size is : " << sizeof(array) << endl;
+void Format::splitToArray(int* array, int length, string& splitDelegate, char delimiter) {
 
     string numberStr = "";
+    int stringLength = splitDelegate.length();
+    int arrayPos = 0;
 
-    for (int i = 0; i < sizeof(array); i++) {
+    for (int i = 0; i < stringLength; i++) {
+
+        if (arrayPos >= length) {
+            break;
+        }
+
         if (splitDelegate[i] != delimiter) {
             numberStr += splitDelegate[i];
-        } else if (splitDelegate[i] == delimiter || i == (sizeof(array) - 1)) {
-            array[i] = stringToInteger(numberStr);
+        }
+        if (splitDelegate[i] == delimiter || i == (stringLength - 1)) {
+            cout << numberStr << endl;
+            array[arrayPos] = stringToInteger(numberStr);
             numberStr = "";
+            arrayPos++;
         }
     }
+
 }
 
 int Format::stringToInteger(string& input) {
@@ -127,4 +142,10 @@ void Format::buildCommunicationString() {
 
 string Format::getCommunicationString() {
     return communicationString;
+}
+
+void Format::resetArray(int* array, int value, int length) {
+    for (int i = 0; i < length; i++) {
+        array[i] = value;
+    }
 }

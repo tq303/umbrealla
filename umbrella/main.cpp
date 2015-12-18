@@ -7,9 +7,9 @@ using namespace std;
 
 int main() {
 
-    Format fmt;
-
-    fmt.split("u1,2,3.s100.c0xFF,0xFF,0xFF.x0,4.d1,2,3.o100;");
+    Format format;
+    string comms = "1.1.1000.255,255,255";
+    format.decode(comms);
 
     return 0;
 }

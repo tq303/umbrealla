@@ -4,24 +4,23 @@
 #include <vector>
 
 class Format {
+
     public:
 
-        Format();
+        Format(void);
 
         void
-            decode(std::string&);
-
-        int stringToInteger(std::string&);
-
-        void splitToArray(int*, std::string&, char);
-
-        void
+            decode(std::string&),
             setUmbrella(int),
             setSpeed(int),
             setAnimation(int),
             setColour(int,int,int),
-            buildCommunicationString();
-            
+            buildCommunicationString(),
+            resetArray(int*,int,int),
+            splitToArray(int*, int, std::string&, char);
+
+        int stringToInteger(std::string&);
+
         std::string getCommunicationString();
 
     private:
@@ -30,9 +29,10 @@ class Format {
             umbrella,
             animation,
             speed,
-            colour[3],
             msgElementPos,
             msgElementVariablePos;
+
+        int* colour;
 
         std::string communicationString;
 };
