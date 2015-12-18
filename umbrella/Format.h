@@ -11,11 +11,11 @@ class Format {
 
         void
             decode(std::string&),
+            encode(),
             setUmbrella(int),
             setSpeed(int),
             setAnimation(int),
             setColour(int,int,int),
-            buildCommunicationString(),
             resetArray(int*,int,int),
             splitToArray(int*, int, std::string&, char);
 

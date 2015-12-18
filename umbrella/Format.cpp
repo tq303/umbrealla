@@ -95,14 +95,13 @@ void Format::splitToArray(int* array, int length, string& splitDelegate, char de
             break;
         }
 
-        if (splitDelegate[i] != delimiter) {
-            numberStr += splitDelegate[i];
-        }
-        if (splitDelegate[i] == delimiter || i == (stringLength - 1)) {
+        if (splitDelegate[i] == delimiter || splitDelegate[i] == ';') {
             cout << numberStr << endl;
             array[arrayPos] = stringToInteger(numberStr);
             numberStr = "";
             arrayPos++;
+        } else {
+            numberStr += splitDelegate[i];
         }
     }
 
@@ -130,14 +129,14 @@ void Format::setColour(int _r, int _g, int _b) {
     colour[1] = _g;
     colour[2] = _b;
 }
-void Format::buildCommunicationString() {
+void Format::encode() {
     communicationString = "";
     communicationString += to_string(umbrella) += '.';
     communicationString += to_string(animation) += '.';
     communicationString += to_string(speed) += '.';
     communicationString += to_string(colour[0]) += ',';
     communicationString += to_string(colour[1]) += ',';
-    communicationString += to_string(colour[2]);
+    communicationString += to_string(colour[2]) += ';';
 }
 
 string Format::getCommunicationString() {
