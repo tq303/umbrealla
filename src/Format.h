@@ -1,33 +1,26 @@
 #pragma once
 
-#include "Arduino.h"
+#include <string>
 
 class Format {
 
     public:
 
-        Format(void);
+        Format();
 
         void
-            decode(String&),
+            decode(std::string&),
             encode(),
             setUmbrella(int),
             setSpeed(int),
             setAnimation(int),
             setColour(int,int,int),
             resetArray(int*,int,int),
-            splitToArray(int*, int, String&, char);
+            splitToArray(int*, int, std::string&, char);
 
-        int
-            stringToInteger(String&),
-            getUmbrella(),
-            getAnimation(),
-            getSpeed(),
-            getRed(),
-            getGreen(),
-            getBlue();
+        int stringToInteger(std::string&);
 
-        String getCommunicationString();
+        std::string getCommunicationString();
 
     private:
 
@@ -40,5 +33,5 @@ class Format {
 
         int* colour;
 
-        String communicationString;
+        std::string communicationString;
 };

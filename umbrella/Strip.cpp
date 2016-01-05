@@ -6,10 +6,10 @@
 
 #define LED_COUNT 30;
 
-void Strip::setup(uint16_t _initialPin = 0, int _stripCount = 10) {
+void Strip::setup(uint16_t _initialPin = 0, int _stripCount = 8) {
 
-  if (_stripCount > 10) {
-    _stripCount = 10;
+  if (_stripCount > 8) {
+    _stripCount = 8;
   }
 
   // build array of LED strip
@@ -21,7 +21,7 @@ void Strip::setup(uint16_t _initialPin = 0, int _stripCount = 10) {
 
 void Strip::setup(uint16_t _initialPin = 0) {
 
-  int _stripCount = 10;
+  int _stripCount = 8;
 
   // build array of LED strip
   for (uint16_t i = 0; i < _stripCount; i++) {
@@ -40,7 +40,7 @@ void Strip::style(int _strip, int _pixel, uint32_t _colour) {
 }
 
 void Strip::styleAll(int _pixel, uint32_t _colour) {
-  for (int i = 0; i < 10; i++) {
+  for (int i = 0; i < 8; i++) {
     style(i, _pixel, _colour);
   }
 }
@@ -50,7 +50,7 @@ void Strip::show(int _strip) {
 }
 
 void Strip::showAll(void) {
-  for (int i = 0; i < 10; i++) {
+  for (int i = 0; i < 8; i++) {
     show(i);
   }
 }
@@ -60,7 +60,7 @@ void Strip::clear(int _strip) {
 }
 
 void Strip::clearAll(void) {
-  for (int i = 0; i < 10; i++) {
+  for (int i = 0; i < 8; i++) {
     clear(i);
   }
 }
@@ -70,7 +70,7 @@ void Strip::begin(int _strip) {
 }
 
 void Strip::beginAll(void) {
-  for (int i = 0; i < 10; i++) {
+  for (int i = 0; i < 8; i++) {
     begin(i);
   }
 }
@@ -81,7 +81,7 @@ void Strip::setBrightness(int _strip, uint8_t b) {
 }
 
 void Strip::setBrightnessAll(uint8_t b) {
-  for (int i = 0; i < 10; i++) {
+  for (int i = 0; i < 8; i++) {
     setBrightness(i, b);
   }
 }

@@ -10,11 +10,14 @@
  *
  */
 
+#include <string>
+#include <iostream>
+
 #include "Format.h"
 
 using namespace std;
 
-Format::Format(void) {
+Format::Format() {
     umbrella = 0;
     animation = 0;
     speed = 100;
@@ -27,9 +30,9 @@ Format::Format(void) {
     resetArray(colour, 0, 3);
 }
 
-void Format::decode(String& input) {
+void Format::decode(string& input) {
 
-	String element = "";
+	string element = "";
 
     for (int i = 0; i < input.length(); i++) {
 
@@ -75,9 +78,9 @@ void Format::decode(String& input) {
 
 }
 
-void Format::splitToArray(int* array, int length, String& splitDelegate, char delimiter) {
+void Format::splitToArray(int* array, int length, string& splitDelegate, char delimiter) {
 
-    String numberStr = "";
+    string numberStr = "";
     int stringLength = splitDelegate.length();
     int arrayPos = 0;
 
@@ -98,9 +101,9 @@ void Format::splitToArray(int* array, int length, String& splitDelegate, char de
 
 }
 
-int Format::stringToInteger(String& input) {
+int Format::stringToInteger(string& input) {
     if (input.length() > 0) {
-        return input.toInt();
+        return stoi(input);
     } else {
         return 0;
     }
@@ -122,15 +125,15 @@ void Format::setColour(int _r, int _g, int _b) {
 }
 void Format::encode() {
     communicationString = ":";
-    communicationString += String(umbrella) += '.';
-    communicationString += String(animation) += '.';
-    communicationString += String(speed) += '.';
-    communicationString += String(colour[0]) += ',';
-    communicationString += String(colour[1]) += ',';
-    communicationString += String(colour[2]) += ';';
+    communicationString += to_string(umbrella) += '.';
+    communicationString += to_string(animation) += '.';
+    communicationString += to_string(speed) += '.';
+    communicationString += to_string(colour[0]) += ',';
+    communicationString += to_string(colour[1]) += ',';
+    communicationString += to_string(colour[2]) += ';';
 }
 
-String Format::getCommunicationString() {
+string Format::getCommunicationString() {
     return communicationString;
 }
 
@@ -138,28 +141,4 @@ void Format::resetArray(int* array, int value, int length) {
     for (int i = 0; i < length; i++) {
         array[i] = value;
     }
-}
-
-int Format::getUmbrella() {
-    return umbrella;
-}
-
-int Format::getAnimation() {
-    return animation;
-}
-
-int Format::getSpeed() {
-    return speed;
-}
-
-int Format::getRed() {
-    return colour[0];
-}
-
-int Format::getGreen() {
-    return colour[1];
-}
-
-int Format::getBlue() {
-    return colour[2];
 }
