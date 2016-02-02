@@ -49,19 +49,20 @@ void setup() {
 
 void loop(){
 
-    if (Serial.available()) {
-        if (Serial.read() == ':') {
-            readFeed = true;
-        }
-        if (!animating && readFeed) {
-            if (Serial.read() == ':' && Serial.read() != ';') {
-                message += Serial.read();
-            } else {
-                readFeed = false;
-                animate();
-            }
-        }
-    }
+  animateDown(20, false);
+//    if (Serial.available()) {
+//        if (Serial.read() == ':') {
+//            readFeed = true;
+//        }
+//        if (!animating && readFeed) {
+//            if (Serial.read() == ':' && Serial.read() != ';') {
+//                message += Serial.read();
+//            } else {
+//                readFeed = false;
+//                animate();
+//            }
+//        }
+//    }
     // if (radio.available()){
     //
     //     radio.read(msg, sizeof(msg));
