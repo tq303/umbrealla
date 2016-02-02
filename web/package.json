@@ -10,5 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "react": "^0.14.7"
+  },
+  "devDependencies": {
+    "webpack": "^1.12.12"
   }
 }
