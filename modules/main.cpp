@@ -12,14 +12,14 @@ int main () {
     fmt.setSpeed(1);
     fmt.setColour(255,255,255);
 
-    int* array = fmt.encode();
+    int* encodeArray = fmt.encode();
 
-    cout << "array position : 0 : " << array[0] << endl;
-    cout << "array position : 1 : " << array[1] << endl;
-    cout << "array position : 2 : " << array[2] << endl;
-    cout << "array position : 3 : " << array[3] << endl;
-    cout << "array position : 4 : " << array[4] << endl;
-    cout << "array position : 5 : " << array[5] << endl;
+    cout << "array position : 0 : " << encodeArray[0] << endl;
+    cout << "array position : 1 : " << encodeArray[1] << endl;
+    cout << "array position : 2 : " << encodeArray[2] << endl;
+    cout << "array position : 3 : " << encodeArray[3] << endl;
+    cout << "array position : 4 : " << encodeArray[4] << endl;
+    cout << "array position : 5 : " << encodeArray[5] << endl;
 
     int decodeArray[TRANSMIT_ELEMENT_COUNT] = {6,5,4,3,2,1};
 
