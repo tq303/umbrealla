@@ -17,3 +17,14 @@ Requires Adafruit NeoPixel library.
 |SCK   |5  |grey  |13         |
 |MOSI  |6  |yellow|11         |
 |MISO  |7  |purple|12         |
+
+# Serial Utilization
+
+passes a uniform array with each index containing the following items.
+
+  - [0] umbrella
+  - [1] animation
+  - [2] speed
+  - [3] red
+  - [4] green
+  - [5] blue
