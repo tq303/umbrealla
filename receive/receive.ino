@@ -1,7 +1,7 @@
 /*
  * Receiver
  */
- 
+
 #include <SPI.h>
 #include <nRF24L01.h>
 #include <RF24.h>
@@ -36,17 +36,16 @@ void loop()
     {
       // Fetch the data payload
       radio.read( joystick, sizeof(joystick) );
-      done = true;
       Serial.print("X = ");
       Serial.print(joystick[0]);
-      Serial.print(" Y = ");      
+      Serial.print(" Y = ");
       Serial.println(joystick[1]);
+      done = true;
     }
   }
   else
-  {    
+  {
       Serial.println("No radio available");
   }
 
 }
-
