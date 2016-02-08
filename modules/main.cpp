@@ -12,7 +12,7 @@ int main () {
     fmt.setSpeed(1);
     fmt.setColour(255,255,255);
 
-    int* encodeArray = fmt.encode();
+    unsigned char* encodeArray = fmt.encode();
 
     cout << "array position : 0 : " << encodeArray[0] << endl;
     cout << "array position : 1 : " << encodeArray[1] << endl;
@@ -21,7 +21,7 @@ int main () {
     cout << "array position : 4 : " << encodeArray[4] << endl;
     cout << "array position : 5 : " << encodeArray[5] << endl;
 
-    int decodeArray[TRANSMIT_ELEMENT_COUNT] = {6,5,4,3,2,1};
+    unsigned char decodeArray[TRANSMIT_ELEMENT_COUNT] = {6,5,4,3,2,1};
 
     fmt.decode(decodeArray);
 
