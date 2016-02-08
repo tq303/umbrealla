@@ -21,16 +21,16 @@ class Format {
         Format(void);
 
         void
-            decode(int*),
-            setUmbrella(int),
-            setAnimation(int),
-            setSpeed(int),
-            setColour(int,int,int);
+            decode(unsigned char*),
+            setUmbrella(unsigned char),
+            setAnimation(unsigned char),
+            setSpeed(unsigned char),
+            setColour(unsigned char,unsigned char,unsigned char);
 
-        int*
+        unsigned char*
             encode();
 
-        int
+        unsigned char
             transmitArray[TRANSMIT_ELEMENT_COUNT],
             getUmbrella(),
             getAnimation(),
@@ -41,7 +41,7 @@ class Format {
 
     private:
 
-        int
+        unsigned char
             umbrella,
             animation,
             speed,

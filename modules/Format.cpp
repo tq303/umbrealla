@@ -11,7 +11,7 @@ Format::Format(void) {
 
 }
 
-int* Format::encode() {
+unsigned char* Format::encode() {
 
     transmitArray[FORMAT_UMBRELLA_POS]  = umbrella;
     transmitArray[FORMAT_ANIMATION_POS] = animation;
@@ -23,7 +23,7 @@ int* Format::encode() {
     return transmitArray;
 }
 
-void Format::decode(int* receiveArray) {
+void Format::decode(unsigned char* receiveArray) {
     umbrella  = receiveArray[FORMAT_UMBRELLA_POS];
     animation = receiveArray[FORMAT_ANIMATION_POS];
     speed     = receiveArray[FORMAT_SPEED_POS];
@@ -32,41 +32,41 @@ void Format::decode(int* receiveArray) {
     blue      = receiveArray[FORMAT_BLUE_POS];
 }
 
-void Format::setUmbrella(int _u) {
+void Format::setUmbrella(unsigned char _u) {
     umbrella = _u;
 }
-void Format::setSpeed(int _s) {
+void Format::setSpeed(unsigned char _s) {
     speed = _s;
 }
-void Format::setAnimation(int _a) {
+void Format::setAnimation(unsigned char _a) {
     animation = _a;
 }
-void Format::setColour(int _r, int _g, int _b) {
+void Format::setColour(unsigned char _r, unsigned char _g, unsigned char _b) {
     red   = _r;
     green = _g;
     blue  = _b;
 }
 
-int Format::getUmbrella() {
+unsigned char Format::getUmbrella() {
     return umbrella;
 }
 
-int Format::getAnimation() {
+unsigned char Format::getAnimation() {
     return animation;
 }
 
-int Format::getSpeed() {
+unsigned char Format::getSpeed() {
     return speed;
 }
 
-int Format::getRed() {
+unsigned char Format::getRed() {
     return red;
 }
 
-int Format::getGreen() {
+unsigned char Format::getGreen() {
     return green;
 }
 
-int Format::getBlue() {
+unsigned char Format::getBlue() {
     return blue;
 }
