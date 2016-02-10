@@ -1,4 +1,12 @@
+import React from 'react';
+import ReactDOM   from 'react-dom';
+
 import Umbrella from './js/Umbrella';
 import UI from './js/UI';
 
-let umbrella = new Umbrella();
+const LED_COUNT   = 30,
+      STRIP_COUNT = 8;
+
+let umbrella = new Umbrella(LED_COUNT);
+
+ReactDOM.render(<UI ledCount={ LED_COUNT } stripCount={ STRIP_COUNT }/>, document.getElementById('ui'));

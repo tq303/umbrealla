@@ -1,5 +1,4 @@
-import React      from 'react';
-import ReactDOM   from 'react-dom';
+import React from 'react';
 
 require('../../styles/ui.scss');
 
@@ -10,11 +9,16 @@ class UI extends React.Component {
     render() {
         return (
             <div>
-                <Cycle/>
+                <Cycle ledCount={ this.props.ledCount } stripCount={ this.props.stripCount }/>
                 <Led/>
             </div>
         )
     }
 }
 
-ReactDOM.render(<UI/>, document.getElementById('ui'));
+UI.propTypes = {
+    ledCount: React.PropTypes.number.isRequired,
+    stripCount: React.PropTypes.number.isRequired
+};
+
+export default UI;

@@ -7,8 +7,8 @@
 import React from 'react';
 
 class Cycle extends React.Component {
-    constructor() {
-        super();
+    constructor(params) {
+        super(params);
         this.state = {
             animateCycles: [this.animateArray()],
             cyclePosition: 1,
@@ -153,11 +153,8 @@ class Cycle extends React.Component {
 }
 
 Cycle.propTypes = {
-    ledCount: React.PropTypes.number.isRequired
-};
-
-Cycle.defaultProps = {
-    ledCount: 30
+    ledCount: React.PropTypes.number.isRequired,
+    stripCount: React.PropTypes.number.isRequired
 };
 
 export default Cycle;
