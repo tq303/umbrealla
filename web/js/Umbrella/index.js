@@ -1,9 +1,11 @@
 import THREE from 'three';
 
 class Umbrella {
-    constructor(ledCount) {
+    constructor( ledCount ) {
 
+        // setup variables
         this.ledCount = ledCount;
+        this.radius = 30;
 
         // scene and camera
         this.scene    = new THREE.Scene();
@@ -35,19 +37,18 @@ class Umbrella {
         this.renderer.render( this.scene, this.camera );
     }
     createArm() {
-        let arm    = new THREE.Geometry(),
-            radius = 30;
+        let arm = new THREE.Geometry();
 
         for (let i = 0; i <= this.ledCount; i++) {
             let angle = ( (90 / this.ledCount) * i );
-            let x = Math.cos(this.radians(angle)) * radius;
-            let y = Math.sin(this.radians(angle)) * radius;
+            let x = Math.cos(this.radians(angle)) * this.radius;
+            let y = Math.sin(this.radians(angle)) * this.radius;
             arm.vertices.push(new THREE.Vector3(x, y, 0));
         }
 
         return arm;
     }
-    radians(degrees) {
+    radians( degrees ) {
         return degrees * (Math.PI / 180);
     }
 }

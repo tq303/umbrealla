@@ -7,8 +7,8 @@
 import React from 'react';
 
 class Cycle extends React.Component {
-    constructor(params) {
-        super(params);
+    constructor( params ) {
+        super( params );
         this.state = {
             animateCycles: [this.animateArray()],
             cyclePosition: 1,
@@ -105,7 +105,7 @@ class Cycle extends React.Component {
     getCurrentCycleRef() {
         return this.state.animateCycles[( this.state.cyclePosition - 1 )];
     }
-    updateLedPosition(e) {
+    updateLedPosition( e ) {
         if (e.target.value >= 1 && e.target.value <= this.props.ledCount) {
             this.setState({
                 ledPosition: e.target.value
