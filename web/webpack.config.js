@@ -1,5 +1,5 @@
 var path    = require('path'),
-    webpack = require('webpack');
+webpack = require('webpack');
 
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -26,5 +26,8 @@ module.exports = {
         new ExtractTextPlugin('styles.css', {
             allChunks: true
         })
-    ]
+    ],
+    resolve: {
+        extensions: ['', '.js', '.jsx']
+    }
 };

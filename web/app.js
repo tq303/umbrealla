@@ -1,1 +1,1 @@
-import UI from './jsx/ui.jsx';
+import UI from './jsx/UI';
