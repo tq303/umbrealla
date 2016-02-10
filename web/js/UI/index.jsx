@@ -1,6 +1,5 @@
 import React      from 'react';
 import ReactDOM   from 'react-dom';
-import Processing from 'processing-js';
 
 require('../../styles/ui.scss');
 

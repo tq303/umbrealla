@@ -10,9 +10,9 @@
   "author": "oliver white",
   "license": "ISC",
   "dependencies": {
-    "font-awesome": "^4.5.0",
-    "processing-js": "^1.4.16",
     "bootstrap-sass": "^3.3.6",
+    "font-awesome": "^4.5.0",
+    "p5": "^0.4.22",
     "react": "^0.14.7",
     "react-dom": "^0.14.7"
   },
