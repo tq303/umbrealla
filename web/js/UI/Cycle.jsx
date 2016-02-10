@@ -127,7 +127,13 @@ class Cycle extends React.Component {
                     </div>
 
                     <span className="badge">{ this.state.cyclePosition }</span> / <span className="badge">{ this.state.animateCycles.length }</span>
+                </div>
 
+                <div>
+                    <input className="form-control" value={ this.state.ledPosition } onChange={ this.updateLedPosition.bind(this) } type="number" />
+                </div>
+
+                <div>
                     <div className="btn-group">
                         <button type="button" className="btn btn-default" onClick={ this.insertCycle.bind(this) }>
                             <i className="fa fa-plus"></i>
@@ -139,10 +145,6 @@ class Cycle extends React.Component {
                             <i className="fa fa-undo"></i>
                         </button>
                     </div>
-                </div>
-
-                <div>
-                    <input className="form-control" value={ this.state.ledPosition } onChange={ this.updateLedPosition.bind(this) } type="number" />
                 </div>
 
             </div>
@@ -158,4 +160,4 @@ Cycle.defaultProps = {
     ledCount: 30
 };
 
-export default Cycle
+export default Cycle;
