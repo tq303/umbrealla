@@ -25,14 +25,4 @@ class UI extends React.Component {
     }
 }
 
-/*
-UI.propTypes = {
-    title: React.PropTypes.string,
-    tab:   React.PropTypes.number.isRequired
-}
-
-UI.defaultProps = {
-    title: 'UI'
-}
-*/
 export default UI;

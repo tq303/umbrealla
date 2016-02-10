@@ -12,7 +12,8 @@ class Cycle extends React.Component {
         this.state = {
             animateCycles: [this.animateArray()],
             cyclePosition: 1,
-            undoCycle: this.defaultUndoCycle()
+            undoCycle: this.defaultUndoCycle(),
+            ledPosition: 1
         };
     }
     animateArray() {
@@ -104,36 +105,57 @@ class Cycle extends React.Component {
     getCurrentCycleRef() {
         return this.state.animateCycles[( this.state.cyclePosition - 1 )];
     }
+    updateLedPosition(e) {
+        if (e.target.value >= 1 && e.target.value <= this.props.ledCount) {
+            this.setState({
+                ledPosition: e.target.value
+            });
+        }
+    }
     render() {
         return (
             <div id="cycle">
 
-                <div className="btn-group">
-                    <button type="button" className="btn btn-default" onClick={ this.popCycle.bind(this) }>
-                        <i className="fa fa-step-backward"></i>
-                    </button>
-                    <button type="button" className="btn btn-default" onClick={ this.pushCycle.bind(this) }>
-                        <i className="fa fa-step-forward"></i>
-                    </button>
+                <div>
+                    <div className="btn-group">
+                        <button type="button" className="btn btn-default" onClick={ this.popCycle.bind(this) }>
+                            <i className="fa fa-step-backward"></i>
+                        </button>
+                        <button type="button" className="btn btn-default" onClick={ this.pushCycle.bind(this) }>
+                            <i className="fa fa-step-forward"></i>
+                        </button>
+                    </div>
+
+                    <span className="badge">{ this.state.cyclePosition }</span> / <span className="badge">{ this.state.animateCycles.length }</span>
+
+                    <div className="btn-group">
+                        <button type="button" className="btn btn-default" onClick={ this.insertCycle.bind(this) }>
+                            <i className="fa fa-plus"></i>
+                        </button>
+                        <button type="button" className="btn btn-default" disabled={ this.state.animateCycles.length === 1 } onClick={ this.deleteCycle.bind(this) }>
+                            <i className="fa fa-minus"></i>
+                        </button>
+                        <button type="button" className="btn btn-default" disabled={ !this.state.undoCycle.position } onClick={ this.undoDeleteCycle.bind(this) }>
+                            <i className="fa fa-undo"></i>
+                        </button>
+                    </div>
                 </div>
 
-                <span className="badge">{ this.state.cyclePosition }</span> / <span className="badge">{ this.state.animateCycles.length }</span>
-
-                <div className="btn-group">
-                    <button type="button" className="btn btn-default" onClick={ this.insertCycle.bind(this) }>
-                        <i className="fa fa-plus"></i>
-                    </button>
-                    <button type="button" className="btn btn-default" disabled={ this.state.animateCycles.length === 1 } onClick={ this.deleteCycle.bind(this) }>
-                        <i className="fa fa-minus"></i>
-                    </button>
-                    <button type="button" className="btn btn-default" disabled={ !this.state.undoCycle.position } onClick={ this.undoDeleteCycle.bind(this) }>
-                        <i className="fa fa-undo"></i>
-                    </button>
+                <div>
+                    <input className="form-control" value={ this.state.ledPosition } onChange={ this.updateLedPosition.bind(this) } type="number" />
                 </div>
 
             </div>
         )
     }
 }
+
+Cycle.propTypes = {
+    ledCount: React.PropTypes.number.isRequired
+};
+
+Cycle.defaultProps = {
+    ledCount: 30
+};
 
 export default Cycle
