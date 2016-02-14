@@ -4,18 +4,16 @@
 #pragma once
 
 // length of transmit array
-static const char TRANSMIT_ELEMENT_COUNT = 7;
+static const char TRANSMIT_ELEMENT_COUNT = 6;
 static const long BAUD_RATE              = 115200;
 
 // array element positions
-static const char START_SIGNAL           = ';';
-static const char FORMAT_SIGNAL_START    = 0;
-static const char FORMAT_UMBRELLA_POS    = 1;
-static const char FORMAT_ANIMATION_POS   = 2;
-static const char FORMAT_SPEED_POS       = 3;
-static const char FORMAT_RED_POS         = 4;
-static const char FORMAT_BLUE_POS        = 5;
-static const char FORMAT_GREEN_POS       = 6;
+static const char FORMAT_UMBRELLA_POS    = 0;
+static const char FORMAT_ANIMATION_POS   = 1;
+static const char FORMAT_SPEED_POS       = 2;
+static const char FORMAT_RED_POS         = 3;
+static const char FORMAT_BLUE_POS        = 4;
+static const char FORMAT_GREEN_POS       = 5;
 
 class Format {
 
