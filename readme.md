@@ -22,9 +22,11 @@ Requires Adafruit NeoPixel library.
 
 passes a uniform array with each index containing the following items.
 
-  - [0] umbrella
-  - [1] animation
-  - [2] speed
-  - [3] red
-  - [4] green
-  - [5] blue
+| Variable             | Position |
+|----------------------|----------|
+|FORMAT_UMBRELLA_POS   | 0        |
+|FORMAT_ANIMATION_POS  | 1        |
+|FORMAT_SPEED_POS      | 2        |
+|FORMAT_RED_POS        | 3        |
+|FORMAT_BLUE_POS       | 4        |
+|FORMAT_GREEN_POS      | 5        |
