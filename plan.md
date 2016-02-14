@@ -5,12 +5,14 @@ Outstanding things to do.
 - Kinect application
     - Create grid detection application.
     - ~~Integrate new Format module into openframeworks.~~
-    - Properly send radio array to arduino.
-    - Transmit array from arduino to umbrella.
+    - ~~Properly send radio array to arduino~~.
+    - ~~Transmit array from arduino to umbrella~~.
+
 
 - Umbrella application
-    - Receive array from transmitter.
+    - ~~Receive array from transmitter~~.
     - Translate to animation / speed / colour.
+    
 
 - Umbrellas
     - Finish soldering.
