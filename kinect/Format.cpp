@@ -13,7 +13,6 @@ Format::Format(void) {
 
 unsigned char* Format::encode() {
 
-    transmitArray[FORMAT_SIGNAL_START]  = START_SIGNAL;
     transmitArray[FORMAT_UMBRELLA_POS]  = umbrella;
     transmitArray[FORMAT_ANIMATION_POS] = animation;
     transmitArray[FORMAT_SPEED_POS]     = speed;
@@ -23,7 +22,7 @@ unsigned char* Format::encode() {
 
     return transmitArray;
 }
- 
+
 void Format::decode(unsigned char* receiveArray) {
     umbrella  = receiveArray[FORMAT_UMBRELLA_POS];
     animation = receiveArray[FORMAT_ANIMATION_POS];

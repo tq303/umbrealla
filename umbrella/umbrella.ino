@@ -1,31 +1,37 @@
+/**
+ * Recieve signal and animate LED strips
+ */
+
 #include <Adafruit_NeoPixel.h>
 
 #include "Strip.h"
 #include "Format.h"
 
-// #include  <SPI.h>
-// #include "nRF24L01.h"
-// #include "RF24.h"
+#include <SPI.h>
+#include <nRF24L01.h>
+#include <RF24.h>
 
 Strip strip;
 Format fmt;
 
-bool readFeed;
-bool animating;
-
-String message;
-
 #define LED_COUNT = 30;
 
-// RF24 radio(9,10);
+#define CE_PIN   9
+#define CSN_PIN 10
 
+// NOTE: the "LL" at the end of the constant is "LongLong" type
 const uint64_t PIPE = 0xE8E8F0F0E1LL;
 
-int msg[32];
+RF24 radio(CE_PIN, CSN_PIN);
+
+// TODO look at setting this in format class
+unsigned char receiveArray[TRANSMIT_ELEMENT_COUNT];
+
+bool animating;
 
 void setup() {
 
-  Serial.begin(9600);
+  Serial.begin(BAUD_RATE);
 
   strip.setup(2);
 
@@ -33,64 +39,38 @@ void setup() {
   strip.beginAll();
   strip.showAll();
 
-  // radio.begin();
-  // radio.openReadingPipe(1, PIPE);
-  // radio.startListening();
-
-  memset(msg, 0, 32);
-
-  readFeed = false;
-  animating = false;
-
-  message = "";
-
-  pinMode(13, OUTPUT);
+  radio.begin();
+  radio.openReadingPipe(1, PIPE);
+  radio.startListening();
 }
 
 void loop(){
 
-  animateDown(20, false);
-//    if (Serial.available()) {
-//        if (Serial.read() == ':') {
-//            readFeed = true;
-//        }
-//        if (!animating && readFeed) {
-//            if (Serial.read() == ':' && Serial.read() != ';') {
-//                message += Serial.read();
-//            } else {
-//                readFeed = false;
-//                animate();
-//            }
-//        }
-//    }
-    // if (radio.available()){
-    //
-    //     radio.read(msg, sizeof(msg));
-    //
-    //     if (msg[0] != 0){
-    //         // animate LEDs
-    //     }
-    //
-    // } else{
-    //     Serial.println("No radio available");
-    // }
+    if ( radio.available() ) {
+      // Read the data payload until we've received everything
+      bool done = false;
+      while (!done)
+      {
+        // Fetch the data payload
+        radio.read( receiveArray, TRANSMIT_ELEMENT_COUNT );
+
+        fmt.decode(receiveArray);
+
+        Serial.print("umbrella : ");
+        Serial.println(fmt.getUmbrella());
+        Serial.print("animation : ");
+        Serial.println(fmt.getAnimation());
+
+        done = true;
+      }
+    }
+
 }
 
 void animate() {
     animating = true;
-    fmt.decode(message);
 
-    switch(fmt.getAnimation()) {
-        case 0:
-            animateDown(20, (fmt.getUmbrella() == 1));
-            break;
-        case 1:
-            animatePulsate(100);
-            break;
-        default:
-            animateRotate(50, (fmt.getUmbrella() == 2));
-            break;
-    }
+    switch(fmt.getAnimation()) {}
 
     animating = false;
 }

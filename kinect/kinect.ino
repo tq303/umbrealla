@@ -1,54 +1,40 @@
+/*
+ * Read serial array from openframeworks and transmit to radio transmitters
+ */
+
 #include <SPI.h>
-#include "nRF24L01.h"
-#include "RF24.h"
+#include <nRF24L01.h>
+#include <RF24.h>
 
 #include "Format.h"
 
+#define CE_PIN   9
+#define CSN_PIN 10
+
 const uint64_t PIPE = 0xE8E8F0F0E1LL;
 
-RF24 radio(9,10);
+RF24 radio(CE_PIN, CSN_PIN);
 
 Format fmt;
 
+// TODO look at setting this in format class
+unsigned char sendArray[TRANSMIT_ELEMENT_COUNT];
+
 void setup(){
-    Serial.begin(9600);
+    Serial.begin(BAUD_RATE);
 
     radio.begin();
     radio.openWritingPipe(PIPE);
-
 }
 
 void loop() {
 
-    int pos = 0;
-
     // get data from oF app
-    while (Serial.available() && (pos < TRANSMIT_ELEMENT_COUNT)) {
+    while (Serial.available()) {
 
-        switch (pos) {
-            case FORMAT_UMBRELLA_POS:
-                fmt.setUmbrella(Serial.read());
-                break;
-            case FORMAT_ANIMATION_POS:
-                fmt.setAnimation(Serial.read());
-                break;
-            case FORMAT_SPEED_POS:
-                fmt.setSpeed(Serial.read());
-                break;
-            case FORMAT_RED_POS:
-                fmt.setRed(Serial.read());
-                break;
-            case FORMAT_GREEN_POS:
-                fmt.setGreen(Serial.read());
-                break;
-            case FORMAT_BLUE_POS:
-                fmt.setBlue(Serial.read());
-                break;
-        }
+        Serial.readBytes(sendArray, TRANSMIT_ELEMENT_COUNT);
+        radio.write(sendArray, TRANSMIT_ELEMENT_COUNT);
 
-        delay(10);
     }
 
-    // transmit data
-    radio.write(fmt.encode(), TRANSMIT_ELEMENT_COUNT);
 }

@@ -24,8 +24,8 @@ void setup()
 
 void loop()
 {
-    
-  joystick[0] = xFFFFFF;
+
+  joystick[0] = 0;
   joystick[1] = 1024;
 
   radio.write( joystick, sizeof(joystick) );
