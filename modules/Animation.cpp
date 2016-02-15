@@ -88,7 +88,3 @@ unsigned char* Animation::encode() {
     return frameBuffer;
 
 }
-
-int Animation::getArrayPosition(int _receiever, int _strip, int _led) {
-    return (RECIEVER_COUNT * _receiever) * (STRIP_COUNT * _strip) + _led;
-}

@@ -25,9 +25,6 @@ class Animation {
         unsigned char*
             encode();
 
-        int
-            getArrayPosition(int, int, int);
-
     private:
 
         unsigned char

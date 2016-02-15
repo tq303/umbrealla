@@ -40,17 +40,19 @@ int main () {
 
     unsigned char* encodeAnimationArray = animation.encode();
 
-    int pos = 0;
+    // int pos = 0;
+    //
+    // for ( int i = 0; i < RECIEVER_COUNT; i++ ) {
+    //     for ( int j = 0; j < STRIP_COUNT; j++ ) {
+    //         for ( int k = 0; k < LED_COUNT; k++ ) {
+    //
+    //             cout << "encoded : position : " << pos << " : " << (int)encodeAnimationArray[ pos ] << endl;
+    //             pos++;
+    //
+    //         }
+    //     }
+    // }
 
-    for ( int i = 0; i < RECIEVER_COUNT; i++ ) {
-        for ( int j = 0; j < STRIP_COUNT; j++ ) {
-            for ( int k = 0; k < LED_COUNT; k++ ) {
-
-                cout << "encoded : position : " << pos << " : " << (int)encodeAnimationArray[ pos ] << endl;
-                pos++;
-
-            }
-        }
-    }
+    animation.decode(encodeAnimationArray);
 
 }
