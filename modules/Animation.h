@@ -4,7 +4,7 @@
 #pragma once
 
 // length of transmit array
-static const char RECIEVER_COUNT   = 1;
+static const char RECIEVER_COUNT   = 3;
 static const char STRIP_COUNT      = 8;
 static const char LED_COUNT        = 30;
 

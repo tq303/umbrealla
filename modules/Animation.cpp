@@ -1,7 +1,15 @@
 #include "Animation.h"
 
 Animation::Animation(void) {
+    for ( int i = 0; i < RECIEVER_COUNT; i++ ) {
+        for ( int j = 0; j < STRIP_COUNT; j++ ) {
+            for ( int k = 0; k < LED_COUNT; k++ ) {
 
+                preProcessedBuffer[ i ][ j ][ k ] = 0;
+
+            }
+        }
+    }
 }
 
 void Animation::decode(unsigned char* receiveArray) {
@@ -9,7 +17,9 @@ void Animation::decode(unsigned char* receiveArray) {
     for ( int i = 0; i < RECIEVER_COUNT; i++ ) {
         for ( int j = 0; j < STRIP_COUNT; j++ ) {
             for ( int k = 0; k < LED_COUNT; k++ ) {
-                preProcessedBuffer[ i ][ j ][ k ] = frameBuffer[ getArrayPosition( i, j, k ) ];
+
+                preProcessedBuffer[ i ][ j ][ k ] = receiveArray[ getArrayPosition( i, j, k ) ];
+
             }
         }
     }
@@ -62,7 +72,9 @@ unsigned char* Animation::encode() {
     for ( int i = 0; i < RECIEVER_COUNT; i++ ) {
         for ( int j = 0; j < STRIP_COUNT; j++ ) {
             for ( int k = 0; k < LED_COUNT; k++ ) {
+
                 frameBuffer[ getArrayPosition( i, j, k ) ] = preProcessedBuffer[ i ][ j ][ k ];
+
             }
         }
     }
@@ -71,6 +83,6 @@ unsigned char* Animation::encode() {
 
 }
 
-int Animation::getArrayPosition(int _l1, int _l2, int _l3) {
-    return ( ( _l1 * _l2 ) + _l3 );
+int Animation::getArrayPosition(int _receiever, int _strip, int _led) {
+    return (RECIEVER_COUNT * _receiever) * (STRIP_COUNT * _strip) + _led;
 }
