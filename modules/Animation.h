@@ -4,9 +4,9 @@
 #pragma once
 
 // length of transmit array
+static const char RECIEVER_COUNT   = 1;
 static const char STRIP_COUNT      = 8;
 static const char LED_COUNT        = 30;
-static const char RECIEVER_COUNT   = 1;
 
 class Animation {
 
@@ -14,7 +14,23 @@ class Animation {
 
         Animation(void);
 
-        unsigned char
-            frameBuffer[ RECIEVER_COUNT ][ STRIP_COUNT ][ LED_COUNT ];
 
+        void
+            decode(unsigned char*),
+            setAllStripLed(int _strip, int _led, int _colour),
+            setAllLed(int _led, int _colour),
+            setRecieverAllLed(int _receiever, int _led, int _colour),
+            setRecieverStripLed(int _receiever, int _strip, int _led, int _colour);
+
+        unsigned char*
+            encode();
+
+        int
+            getArrayPosition(int, int, int);
+
+    private:
+
+        unsigned char
+            preProcessedBuffer[ RECIEVER_COUNT ][ STRIP_COUNT ][ LED_COUNT ],
+            frameBuffer[ RECIEVER_COUNT * STRIP_COUNT * LED_COUNT ];
 };
