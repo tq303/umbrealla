@@ -14,11 +14,14 @@ Animation::Animation(void) {
 
 void Animation::decode(unsigned char* receiveArray) {
 
+    int pos = 0;
+
     for ( int i = 0; i < RECIEVER_COUNT; i++ ) {
         for ( int j = 0; j < STRIP_COUNT; j++ ) {
             for ( int k = 0; k < LED_COUNT; k++ ) {
 
-                preProcessedBuffer[ i ][ j ][ k ] = receiveArray[ getArrayPosition( i, j, k ) ];
+                preProcessedBuffer[ i ][ j ][ k ] = receiveArray[ pos ];
+                pos++;
 
             }
         }
@@ -69,11 +72,14 @@ void Animation::setRecieverStripLed(int _receiever, int _strip, int _led, int _c
 // cascade multi dimensional array into single level
 unsigned char* Animation::encode() {
 
+    int pos = 0;
+
     for ( int i = 0; i < RECIEVER_COUNT; i++ ) {
         for ( int j = 0; j < STRIP_COUNT; j++ ) {
             for ( int k = 0; k < LED_COUNT; k++ ) {
 
-                frameBuffer[ getArrayPosition( i, j, k ) ] = preProcessedBuffer[ i ][ j ][ k ];
+                frameBuffer[ pos ] = preProcessedBuffer[ i ][ j ][ k ];
+                pos++;
 
             }
         }
