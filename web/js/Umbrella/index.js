@@ -41,11 +41,13 @@ class Umbrella {
         this.renderer = new THREE.WebGLRenderer();
         this.renderer.setSize( 480, 320 );
 
+        // add to DOM
         document.getElementById('umbrella').appendChild( this.renderer.domElement );
 
+        // begin loop
         this.loop();
-        this.moveCameraUpDwn(45);
-        this.moveCameraLeftRight(0);
+        this.moveCameraUpDwn(0);
+        // this.moveCameraLeftRight(0);
     }
     loop() {
         requestAnimationFrame( () => this.loop() );
@@ -103,11 +105,26 @@ class Umbrella {
         return degrees * (Math.PI / 180);
     }
     ensureAngle( amount, variable ) {
-        if (variable + amount >= 360) {
-            return 0;
-        }
 
-        return ( variable + amount );
+        if ( (variable + amount) >= 0 && (variable + amount) <= 180) {
+
+            if (amount < 0) {
+                return (variable + amount);
+            } else {
+                return (variable - amount);
+            }
+
+        } else if ( (variable + amount) < 0 && (variable + amount) >= -180) {
+
+            if (amount < 0) {
+                return (variable - amount);
+            } else {
+                return (variable + amount);
+            }
+
+        } else {
+            return (variable + amount);
+        }
     }
 }
 
