@@ -71,6 +71,15 @@ class Umbrella {
     moveCamera ( axis, amount ) {
         this.camera.position[ axis ] += amount;
     }
+    rotateCameraUpDwn( amount ) {
+        this.rotateCamera( 'x', amount );
+    }
+    rotateCameraLeftRight( amount ) {
+        this.rotateCamera( 'y', amount );
+    }
+    rotateCamera ( axis, amount ) {
+        this.camera.rotation[ axis ] += amount;
+    }
     radians( degrees ) {
         return degrees * (Math.PI / 180);
     }

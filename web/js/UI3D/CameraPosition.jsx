@@ -5,40 +5,43 @@ import Control from './Control';
 class CameraPosition extends Control {
     constructor( props ) {
         super( props );
-        this.longAmount = 2;
-        this.lateralAmount = 2;
+        this.axisY = 10;
+        this.axisX = 10;
     }
     moveCameraUp() {
-        this.props.umbrella.moveCameraUpDwn( this.longAmount );
+        this.props.umbrella.moveCameraUpDwn( this.axisY );
     }
     moveCameraDown() {
-        this.props.umbrella.moveCameraUpDwn( -this.longAmount );
+        this.props.umbrella.moveCameraUpDwn( -this.axisY );
     }
     moveCameraLeft() {
-        this.props.umbrella.moveCameraLeftRight( this.lateralAmount );
+        this.props.umbrella.moveCameraLeftRight( this.axisX );
     }
     moveCameraRight() {
-        this.props.umbrella.moveCameraLeftRight( -this.lateralAmount );
+        this.props.umbrella.moveCameraLeftRight( -this.axisX );
     }
     render() {
         return (
-            <div className="direction-controls">
-                <div className="lat"
-                     onMouseDown={ this.repeatAction.bind( this, this.moveCameraLeft.bind(this) ) }
-                     onMouseUp={ this.destroyAction.bind(this) }>
-                 </div>
-                <div className="long">
-                    <div onMouseDown={ this.moveCameraUp.bind( this, this.moveCameraUp.bind(this) ) }
+            <div className="controls-direction">
+                <h4>Move</h4>
+                <div>
+                    <div className="lat"
+                         onMouseDown={ this.repeatAction.bind( this, this.moveCameraLeft.bind(this) ) }
                          onMouseUp={ this.destroyAction.bind(this) }>
+                     </div>
+                    <div className="long">
+                        <div onMouseDown={ this.repeatAction.bind( this, this.moveCameraUp.bind(this) ) }
+                             onMouseUp={ this.destroyAction.bind(this) }>
+                        </div>
+                        <div onMouseDown={ this.repeatAction.bind( this, this.moveCameraDown.bind(this) ) }
+                             onMouseUp={ this.destroyAction.bind(this) }>
+                        </div>
                     </div>
-                    <div onMouseDown={ this.moveCameraDown.bind( this, this.moveCameraDown.bind(this) ) }
+                    <div className="lat"
+                         onMouseDown={ this.repeatAction.bind( this, this.moveCameraRight.bind(this) ) }
                          onMouseUp={ this.destroyAction.bind(this) }>
-                    </div>
+                     </div>
                 </div>
-                <div className="lat"
-                     onMouseDown={ this.repeatAction.bind( this, this.moveCameraRight.bind(this) ) }
-                     onMouseUp={ this.destroyAction.bind(this) }>
-                 </div>
             </div>
         )
     }
