@@ -10,7 +10,8 @@ class Umbrella {
 
         this.cameraRotationX = 90;
         this.cameraRotationY = 90;
-        this.cameraZoom      = 30;
+        this.cameraRotationZ = 90;
+        this.cameraZoom      = 75;
 
         // scene and camera
         this.scene    = new THREE.Scene();
@@ -43,7 +44,7 @@ class Umbrella {
         document.getElementById('umbrella').appendChild( this.renderer.domElement );
 
         this.loop();
-        this.moveCameraUpDwn(0);
+        this.moveCameraUpDwn(45);
         this.moveCameraLeftRight(0);
     }
     loop() {
@@ -71,9 +72,10 @@ class Umbrella {
     moveCameraUpDwn( amount ) {
 
         this.cameraRotationY = this.ensureAngle( amount, this.cameraRotationY );
+        this.cameraRotationZ = this.ensureAngle( amount, this.cameraRotationZ );
 
         let _y = Math.cos(this.radians(this.cameraRotationY)) * this.cameraZoom,
-            _z = Math.sin(this.radians(this.cameraRotationY)) * this.cameraZoom;
+            _z = Math.sin(this.radians(this.cameraRotationZ)) * this.cameraZoom;
 
         this.camera.position.set( this.camera.position.x, _y, _z );
         this.camera.lookAt(new THREE.Vector3(0,0,0));
@@ -81,12 +83,18 @@ class Umbrella {
     moveCameraLeftRight( amount ) {
 
         this.cameraRotationX = this.ensureAngle( amount, this.cameraRotationX );
+        this.cameraRotationZ = this.ensureAngle( amount, this.cameraRotationZ );
 
         let _x = Math.cos(this.radians(this.cameraRotationX)) * this.cameraZoom,
-            _z = Math.sin(this.radians(this.cameraRotationX)) * this.cameraZoom;
+            _z = Math.sin(this.radians(this.cameraRotationZ)) * this.cameraZoom;
 
         this.camera.position.set( _x, this.camera.position.y, _z );
         this.camera.lookAt(new THREE.Vector3(0,0,0));
+    }
+    setCameraZoom( angle ) {
+        this.cameraZoom = angle;
+        this.moveCameraUpDwn(0);
+        this.moveCameraLeftRight(0);
     }
     radians( degrees ) {
         return degrees * (Math.PI / 180);

@@ -9,7 +9,8 @@ class CameraPosition extends React.Component {
         this.intervalSpeed = 50;
         this.state = {
             angleX: 0,
-            angleY: 0
+            angleY: 0,
+            cameraZoom: this.props.umbrella.cameraZoom
         };
     }
     repeatAction( action ) {
@@ -34,6 +35,10 @@ class CameraPosition extends React.Component {
         this.props.umbrella.moveCameraLeftRight( -1 );
         this.setState({ angleX: this.props.umbrella.cameraRotationX });
     }
+    setCameraZoom(e) {
+        this.props.umbrella.setCameraZoom(e.target.value);
+        this.setState({ cameraZoom: this.props.umbrella.cameraZoom });
+    }
     render() {
         return (
             <div className="controls-direction">
@@ -56,6 +61,7 @@ class CameraPosition extends React.Component {
                          onMouseUp={ this.destroyAction.bind(this) }>
                      </div>
                 </div>
+                <input type="number" value={ this.state.cameraZoom } onChange={ this.setCameraZoom.bind(this) } />
                 <label className="badge">X: { this.state.angleX }</label>
                 <label className="badge">Y: { this.state.angleY }</label>
             </div>
