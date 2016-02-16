@@ -61,8 +61,8 @@ class Umbrella {
 
             let _x     = x * ( this.ledDistance * i ),
                 _y     = y * ( this.ledDistance * i ),
-                _angle = (( 90 / this.ledCount ) * i ),
-                _z     = 0;
+                _angle = (( 90 / this.ledCount ) * i ) + 45,
+                _z     = Math.cos(this.radians(_angle)) * ( this.ledDistance * i );
 
             arm.vertices.push(new THREE.Vector3(_x, _y, _z));
         }
@@ -75,7 +75,7 @@ class Umbrella {
         this.cameraRotationZ = this.ensureAngle( amount, this.cameraRotationZ );
 
         let _y = Math.cos(this.radians(this.cameraRotationY)) * this.cameraZoom,
-            _z = Math.sin(this.radians(this.cameraRotationZ)) * this.cameraZoom;
+            _z = Math.sin(this.radians(this.cameraRotationY)) * this.cameraZoom;
 
         this.camera.position.set( this.camera.position.x, _y, _z );
         this.camera.lookAt(new THREE.Vector3(0,0,0));
@@ -86,7 +86,7 @@ class Umbrella {
         this.cameraRotationZ = this.ensureAngle( amount, this.cameraRotationZ );
 
         let _x = Math.cos(this.radians(this.cameraRotationX)) * this.cameraZoom,
-            _z = Math.sin(this.radians(this.cameraRotationZ)) * this.cameraZoom;
+            _z = Math.sin(this.radians(this.cameraRotationX)) * this.cameraZoom;
 
         this.camera.position.set( _x, this.camera.position.y, _z );
         this.camera.lookAt(new THREE.Vector3(0,0,0));
