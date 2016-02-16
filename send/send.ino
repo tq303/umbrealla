@@ -12,7 +12,7 @@
 const uint64_t pipe = 0xE8E8F0F0E1LL;
 
 RF24 radio(CE_PIN, CSN_PIN);
-int joystick[2];
+int sendArray[2];
 
 void setup()
 {
@@ -25,9 +25,9 @@ void setup()
 void loop()
 {
 
-  joystick[0] = 0;
-  joystick[1] = 1024;
+  sendArray[0] = 0;
+  sendArray[1] = 1024;
 
-  radio.write( joystick, sizeof(joystick) );
+  radio.write( sendArray, sizeof(sendArray) );
 
 }

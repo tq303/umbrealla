@@ -13,7 +13,7 @@
 const uint64_t pipe = 0xE8E8F0F0E1LL;
 
 RF24 radio(CE_PIN, CSN_PIN);
-int joystick[2];
+int receiveArray[2];
 
 void setup()
 {
@@ -35,11 +35,11 @@ void loop()
     while (!done)
     {
       // Fetch the data payload
-      radio.read( joystick, sizeof(joystick) );
+      radio.read( receiveArray, sizeof(receiveArray) );
       Serial.print("X = ");
-      Serial.print(joystick[0]);
+      Serial.print(receiveArray[0]);
       Serial.print(" Y = ");
-      Serial.println(joystick[1]);
+      Serial.println(receiveArray[1]);
       done = true;
     }
   }
