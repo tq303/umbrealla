@@ -30,3 +30,11 @@ passes a uniform array with each index containing the following items.
 |FORMAT_RED_POS        | 3        |
 |FORMAT_BLUE_POS       | 4        |
 |FORMAT_GREEN_POS      | 5        |
+
+i:0123
+      j:0123
+            k:0123
+
+topOffset + middleOffset + offSet
+
+(i * (jTotal + kTotal)) + (j * kTotal) + k
