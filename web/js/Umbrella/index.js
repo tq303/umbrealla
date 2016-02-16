@@ -8,6 +8,10 @@ class Umbrella {
         this.stripCount  = stripCount;
         this.ledDistance = 1;
 
+        this.cameraRotationX = 90;
+        this.cameraRotationY = 90;
+        this.cameraZoom      = 30;
+
         // scene and camera
         this.scene    = new THREE.Scene();
         this.camera   = new THREE.PerspectiveCamera( 75, 480 / 320, 1, 10000 );
@@ -39,6 +43,8 @@ class Umbrella {
         document.getElementById('umbrella').appendChild( this.renderer.domElement );
 
         this.loop();
+        this.moveCameraUpDwn(0);
+        this.moveCameraLeftRight(0);
     }
     loop() {
         requestAnimationFrame( () => this.loop() );
@@ -55,7 +61,7 @@ class Umbrella {
             let _x     = x * ( this.ledDistance * i ),
                 _y     = y * ( this.ledDistance * i ),
                 _angle = (( 90 / this.ledCount ) * i ),
-                _z     = Math.cos(this.radians(_angle)) * this.ledDistance;
+                _z     = 0;
 
             arm.vertices.push(new THREE.Vector3(_x, _y, _z));
         }
@@ -63,25 +69,34 @@ class Umbrella {
         return arm;
     }
     moveCameraUpDwn( amount ) {
-        this.moveCamera( 'y', amount );
+
+        this.cameraRotationY = this.ensureAngle( amount, this.cameraRotationY );
+
+        let _y = Math.cos(this.radians(this.cameraRotationY)) * this.cameraZoom,
+            _z = Math.sin(this.radians(this.cameraRotationY)) * this.cameraZoom;
+
+        this.camera.position.set( this.camera.position.x, _y, _z );
+        this.camera.lookAt(new THREE.Vector3(0,0,0));
     }
     moveCameraLeftRight( amount ) {
-        this.moveCamera( 'x', amount );
-    }
-    moveCamera ( axis, amount ) {
-        this.camera.position[ axis ] += amount;
-    }
-    rotateCameraUpDwn( amount ) {
-        this.rotateCamera( 'x', amount );
-    }
-    rotateCameraLeftRight( amount ) {
-        this.rotateCamera( 'y', amount );
-    }
-    rotateCamera ( axis, amount ) {
-        this.camera.rotation[ axis ] += amount;
+
+        this.cameraRotationX = this.ensureAngle( amount, this.cameraRotationX );
+
+        let _x = Math.cos(this.radians(this.cameraRotationX)) * this.cameraZoom,
+            _z = Math.sin(this.radians(this.cameraRotationX)) * this.cameraZoom;
+
+        this.camera.position.set( _x, this.camera.position.y, _z );
+        this.camera.lookAt(new THREE.Vector3(0,0,0));
     }
     radians( degrees ) {
         return degrees * (Math.PI / 180);
+    }
+    ensureAngle( amount, variable ) {
+        if (variable + amount >= 360) {
+            return 0;
+        }
+
+        return ( variable + amount );
     }
 }
 

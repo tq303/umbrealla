@@ -1,24 +1,38 @@
 import React from 'react';
 
-import Control from './Control';
+require('../../styles/ui-3d.scss');
 
-class CameraPosition extends Control {
+class CameraPosition extends React.Component {
     constructor( props ) {
         super( props );
-        this.axisY = 10;
-        this.axisX = 10;
+        this.interval = null;
+        this.intervalSpeed = 50;
+        this.state = {
+            angleX: 0,
+            angleY: 0
+        };
+    }
+    repeatAction( action ) {
+        this.interval = window.setInterval(action, this.intervalSpeed );
+    }
+    destroyAction() {
+        window.clearInterval( this.interval );
     }
     moveCameraUp() {
-        this.props.umbrella.moveCameraUpDwn( this.axisY );
+        this.props.umbrella.moveCameraUpDwn( 1 );
+        this.setState({ angleY: this.props.umbrella.cameraRotationY });
     }
     moveCameraDown() {
-        this.props.umbrella.moveCameraUpDwn( -this.axisY );
+        this.props.umbrella.moveCameraUpDwn( -1 );
+        this.setState({ angleY: this.props.umbrella.cameraRotationY });
     }
     moveCameraLeft() {
-        this.props.umbrella.moveCameraLeftRight( this.axisX );
+        this.props.umbrella.moveCameraLeftRight( 1 );
+        this.setState({ angleX: this.props.umbrella.cameraRotationX });
     }
     moveCameraRight() {
-        this.props.umbrella.moveCameraLeftRight( -this.axisX );
+        this.props.umbrella.moveCameraLeftRight( -1 );
+        this.setState({ angleX: this.props.umbrella.cameraRotationX });
     }
     render() {
         return (
@@ -42,9 +56,15 @@ class CameraPosition extends Control {
                          onMouseUp={ this.destroyAction.bind(this) }>
                      </div>
                 </div>
+                <label className="badge">X: { this.state.angleX }</label>
+                <label className="badge">Y: { this.state.angleY }</label>
             </div>
         )
     }
 }
+
+CameraPosition.propTypes = {
+    umbrella: React.PropTypes.object.isRequired
+};
 
 export default CameraPosition;
