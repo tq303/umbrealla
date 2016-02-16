@@ -1,6 +1,6 @@
 /**
- * Recieve signal and animate LED strips
- */
+* Recieve signal and animate LED strips
+*/
 
 #include <Adafruit_NeoPixel.h>
 
@@ -31,38 +31,40 @@ bool animating;
 
 void setup() {
 
-  Serial.begin(BAUD_RATE);
+    Serial.begin(BAUD_RATE);
 
-  strip.setup(2);
+    strip.setup(2);
 
-  strip.clearAll();
-  strip.beginAll();
-  strip.showAll();
+    strip.clearAll();
+    strip.beginAll();
+    strip.showAll();
 
-  radio.begin();
-  radio.openReadingPipe(1, PIPE);
-  radio.startListening();
+    radio.begin();
+    radio.openReadingPipe(1, PIPE);
+    radio.startListening();
 }
 
 void loop(){
 
     if ( radio.available() ) {
-      // Read the data payload until we've received everything
-      bool done = false;
-      while (!done)
-      {
-        // Fetch the data payload
-        radio.read( receiveArray, TRANSMIT_ELEMENT_COUNT );
 
-        fmt.decode(receiveArray);
+        // Read the data payload until we've received everything
+        bool done = false;
 
-        Serial.print("umbrella : ");
-        Serial.println(fmt.getUmbrella());
-        Serial.print("animation : ");
-        Serial.println(fmt.getAnimation());
+        while (!done) {
+            // Fetch the data payload
+            radio.read( receiveArray, TRANSMIT_ELEMENT_COUNT );
 
-        done = true;
-      }
+            fmt.decode(receiveArray);
+
+            Serial.print("umbrella : ");
+            Serial.println(fmt.getUmbrella());
+            Serial.print("animation : ");
+            Serial.println(fmt.getAnimation());
+
+            done = true;
+        }
+
     }
 
 }
