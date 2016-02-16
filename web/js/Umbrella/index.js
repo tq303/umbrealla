@@ -78,7 +78,8 @@ class Umbrella {
         let _y = Math.cos(this.radians(this.cameraRotationY)) * this.cameraZoom,
             _z = Math.sin(this.radians(this.cameraRotationY)) * this.cameraZoom;
 
-        this.camera.position.set( this.camera.position.x, _y, _z );
+        this.camera.position.y = _y;
+        this.camera.position.z = _z;
         this.camera.lookAt(new THREE.Vector3(0,0,0));
     }
     moveCameraLeftRight( amount ) {
@@ -89,7 +90,8 @@ class Umbrella {
         let _x = Math.cos(this.radians(this.cameraRotationX)) * this.cameraZoom,
             _z = Math.sin(this.radians(this.cameraRotationX)) * this.cameraZoom;
 
-        this.camera.position.set( _x, this.camera.position.y, _z );
+        this.camera.position.x = _x;
+        this.camera.position.z = _z;
         this.camera.lookAt(new THREE.Vector3(0,0,0));
     }
     setCameraZoom( angle ) {
