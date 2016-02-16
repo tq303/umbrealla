@@ -7,8 +7,8 @@
 import React from 'react';
 
 class Cycle extends React.Component {
-    constructor( params ) {
-        super( params );
+    constructor( props ) {
+        super( props );
         this.state = {
             animateCycles: [this.animateArray()],
             cyclePosition: 1,

@@ -1,0 +1,64 @@
+@import 'includes';
+
+#ui-3d {
+
+    $lat-width: 20%;
+
+    .direction-controls {
+
+        @extend .col-md-2;
+        @extend .clearfix;
+        padding: 0;
+        height: 100%;
+        position: relative;
+
+        .lat, .long {
+            top: 0;
+            text-align: center;
+            vertical-align: middle;
+            height: 100%;
+        }
+
+        .lat {
+
+            position: absolute;
+            bottom: 0;
+            width: $lat-width;
+            background: green;
+            
+            @extend .fa;
+
+            &:first-child {
+                left: 0;
+                @extend .fa-chevron-left;
+            }
+            &:last-child {
+                right: 0;
+                @extend .fa-chevron-right;
+            }
+        }
+
+        .long {
+
+            position: relative;
+            left: $lat-width;
+            width: 60%;
+            background: red;
+
+            @extend .fa;
+
+            div {
+                margin: 0;
+                padding: 0;
+                &:first-child {
+                    @extend .fa-chevron-up;
+                }
+                &:last-child {
+                    @extend .fa-chevron-down;
+                }
+            }
+        }
+
+    }
+
+}
