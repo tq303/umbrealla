@@ -8,13 +8,14 @@
 
         @extend .col-md-2;
         @extend .clearfix;
-        padding: 12px;
+        padding: 0;
         height: 100%;
 
         & > div {
 
             position: relative;
             border: 1px solid $gray-light;
+            margin-bottom: 6px;
 
             .lat, .long {
                 top: 0;
@@ -61,6 +62,13 @@
                     &:last-child {
                         @extend .fa-chevron-down;
                     }
+                }
+            }
+
+            p {
+                padding: 2px 6px 0;
+                input {
+                    width: 60%;
                 }
             }
         }

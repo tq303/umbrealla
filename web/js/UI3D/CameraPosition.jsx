@@ -61,9 +61,11 @@ class CameraPosition extends React.Component {
                          onMouseUp={ this.destroyAction.bind(this) }>
                      </div>
                 </div>
-                <input type="number" value={ this.state.cameraZoom } onChange={ this.setCameraZoom.bind(this) } />
-                <label className="badge">X: { this.state.angleX }</label>
-                <label className="badge">Y: { this.state.angleY }</label>
+                <div>
+                    <p>X: { this.state.angleX }</p>
+                    <p>Y: { this.state.angleY }</p>
+                    <p>Z: <input type="number" value={ this.state.cameraZoom } onChange={ this.setCameraZoom.bind(this) } /></p>
+                </div>
             </div>
         )
     }

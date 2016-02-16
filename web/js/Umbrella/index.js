@@ -57,6 +57,7 @@ class Umbrella {
             x   = Math.cos(this.radians(angle)),
             y   = Math.sin(this.radians(angle));
 
+        // loop each led and place in x,y,z axis
         for (let i = 0; i <= this.ledCount; i++) {
 
             let _x     = x * ( this.ledDistance * i ),
