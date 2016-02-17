@@ -5,8 +5,12 @@ require('../../styles/ui-3d.scss');
 class CameraPosition extends React.Component {
     constructor( props ) {
         super( props );
+
         this.interval = null;
         this.intervalSpeed = 50;
+        this.cameraRotationX = 0;
+        this.cameraRotationY = 0;
+
         this.state = {
             angleX: 0,
             angleY: 0,
@@ -20,20 +24,20 @@ class CameraPosition extends React.Component {
         window.clearInterval( this.interval );
     }
     moveCameraUp() {
-        this.props.umbrella.moveCameraUpDwn( 1 );
-        this.setState({ angleY: this.props.umbrella.cameraRotationY });
+        this.props.umbrella.moveCameraUpDwn( this.cameraRotationY++ );
+        this.setState({ angleY: this.cameraRotationY });
     }
     moveCameraDown() {
-        this.props.umbrella.moveCameraUpDwn( -1 );
-        this.setState({ angleY: this.props.umbrella.cameraRotationY });
+        this.props.umbrella.moveCameraUpDwn( this.cameraRotationY-- );
+        this.setState({ angleY: this.cameraRotationY });
     }
     moveCameraLeft() {
-        this.props.umbrella.moveCameraLeftRight( 1 );
-        this.setState({ angleX: this.props.umbrella.cameraRotationX });
+        this.props.umbrella.moveCameraLeftRight( this.cameraRotationX++ );
+        this.setState({ angleX: this.cameraRotationX });
     }
     moveCameraRight() {
-        this.props.umbrella.moveCameraLeftRight( -1 );
-        this.setState({ angleX: this.props.umbrella.cameraRotationX });
+        this.props.umbrella.moveCameraLeftRight( this.cameraRotationX-- );
+        this.setState({ angleX: this.cameraRotationX });
     }
     setCameraZoom(e) {
         this.props.umbrella.setCameraZoom(e.target.value);
