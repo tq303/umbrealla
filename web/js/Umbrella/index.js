@@ -25,27 +25,36 @@ class Umbrella extends THREE.Object3D {
         this.create();
     }
 
-    simpleObject() {
+    simpleUmbrellaObject() {
         return {
-            lights: [],
-            arms:   []
+            arms: []
+        }
+    }
+
+    simpleArmObject() {
+        return {
+            lights: null,
+            arm:    null
         };
     }
 
     create() {
-        let umbrella = this.simpleObject();
+
+        let umbrella = this.simpleUmbrellaObject();
 
         for (let i = 0; i < this.stripCount; i++) {
 
-            umbrella.arms[i]   = this.createArms( (360 / this.stripCount) * i );
-            umbrella.lights[i] = this.createLights( (360 / this.stripCount) * i );
+            umbrella.arms[i] = this.simpleArmObject();
+
+            umbrella.arms[i].arm    = this.createArm( (360 / this.stripCount) * i );
+            umbrella.arms[i].lights = this.createLights( (360 / this.stripCount) * i );
 
         }
 
         return umbrella;
     }
 
-    createArms( angle ) {
+    createArm( angle ) {
 
         let arm = new THREE.Geometry(),
             x   = Math.cos(this.radians(angle)),
@@ -78,7 +87,7 @@ class Umbrella extends THREE.Object3D {
                 sphere: [],
                 point:  []
             },
-            geometry = new THREE.SphereGeometry( .5, 8 , 1 );
+            geometry = new THREE.SphereGeometry( .5, 8 , 6 );
 
         // loop each led and place in x,y,z axis
         for (let i = 0; i < this.ledCount; i++) {
