@@ -22,16 +22,14 @@ class Umbrella {
         this.controls = new OrbitControls(this.camera);
 
         // material & geometry
-        this.material = new THREE.LineBasicMaterial({
-            color: 0xffffff
-        });
+        this.material = new THREE.MeshLambertMaterial( {color: 0xffffff, overdraw: 0.5} );
 
         // build arms and rotate around center axis
         this.umbrella = [];
 
         for (let i = 0; i < this.umbrellaCount; i++) {
 
-            this.umbrella[i] = this.createUmbrella();
+            this.umbrella[i] = this.create();
 
         }
 
@@ -44,8 +42,6 @@ class Umbrella {
 
         // begin loop
         this.loop();
-        // this.moveCameraUpDwn(0);
-        // this.moveCameraLeftRight(0);
     }
     loop() {
         requestAnimationFrame( () => this.loop() );
@@ -57,13 +53,13 @@ class Umbrella {
             arms:   []
         };
     }
-    createUmbrella() {
-        var umbrella = this.simpleObject();
+    create() {
+        let umbrella = this.simpleObject();
 
-        for (let j = 0; j < this.stripCount; j++) {
+        for (let i = 0; i < this.stripCount; i++) {
 
-            umbrella.arms[j]   = this.createArms( (360 / this.stripCount) * j );
-            umbrella.lights[j] = this.createLights( (360 / this.stripCount) * j );
+            // umbrella.arms[i]   = this.createArms( (360 / this.stripCount) * i );
+            umbrella.lights[i] = this.createLights( (360 / this.stripCount) * i );
 
         }
 
@@ -97,23 +93,29 @@ class Umbrella {
 
         let x      = Math.cos(this.radians(angle)),
             y      = Math.sin(this.radians(angle)),
-            lights = [];
+            lights = {
+                sphere: [],
+                point:  []
+            },
+            geometry = new THREE.SphereGeometry( .5, 8 , 1 );
 
         // loop each led and place in x,y,z axis
-        for (let i = 0; i <= this.ledCount; i++) {
+        for (let i = 0; i < this.ledCount; i++) {
 
             let _x     = x * ( this.ledDistance * i ),
                 _y     = y * ( this.ledDistance * i ),
                 _angle = (( 90 / this.ledCount ) * i ) + 45,
-                _z     = Math.cos(this.radians(_angle)) * ( this.ledDistance * i ),
-                light;
+                _z     = Math.cos(this.radians(_angle)) * ( this.ledDistance * i );
 
-            light = new THREE.PointLight( 0xffffff, 1, 100 );
+            lights.point[i] = new THREE.PointLight( 0xff0000, 1, 100 );
+            lights.point[i].position.set( _x, _y, _z );
 
-            light.position.set( _x, _y, _z );
-            this.scene.add( light );
+            this.scene.add( lights.point[i] );
 
-            light[i] = light;
+            lights.sphere[i] = new THREE.Mesh( geometry, this.material );
+            lights.sphere[i].position.set( _x, _y, _z );
+
+            this.scene.add( lights.sphere[i] );
         }
 
         return lights;
