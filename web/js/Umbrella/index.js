@@ -31,14 +31,7 @@ class Umbrella {
 
         for (let i = 0; i < this.umbrellaCount; i++) {
 
-            this.umbrella[i] = this.simpleObject();
-
-            for (let j = 0; j < this.stripCount; j++) {
-
-                this.umbrella[i].arms[j]   = this.createArms( (360 / this.stripCount) * j );
-                this.umbrella[i].lights[j] = this.createLights( (360 / this.stripCount) * j );
-
-            }
+            this.umbrella[i] = this.createUmbrella();
 
         }
 
@@ -63,6 +56,18 @@ class Umbrella {
             lights: [],
             arms:   []
         };
+    }
+    createUmbrella() {
+        var umbrella = this.simpleObject();
+
+        for (let j = 0; j < this.stripCount; j++) {
+
+            umbrella.arms[j]   = this.createArms( (360 / this.stripCount) * j );
+            umbrella.lights[j] = this.createLights( (360 / this.stripCount) * j );
+
+        }
+
+        return umbrella;
     }
     createArms( angle ) {
 
