@@ -1,5 +1,7 @@
 import THREE from 'three';
 
+const OrbitControls = require('three-orbit-controls')(THREE);
+
 class Umbrella {
     constructor( ledCount, stripCount ) {
 
@@ -17,6 +19,9 @@ class Umbrella {
         this.scene    = new THREE.Scene();
         this.camera   = new THREE.PerspectiveCamera( 75, 480 / 320, 1, 10000 );
         this.camera.position.z = 100;
+        this.camera.lookAt(new THREE.Vector3(0,0,0));
+
+        this.controls = new OrbitControls(this.camera);
 
         // material & geometry
         this.material = new THREE.LineBasicMaterial({
@@ -46,7 +51,7 @@ class Umbrella {
 
         // begin loop
         this.loop();
-        this.moveCameraUpDwn(0);
+        // this.moveCameraUpDwn(0);
         // this.moveCameraLeftRight(0);
     }
     loop() {
