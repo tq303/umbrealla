@@ -14,10 +14,22 @@ let canvas = new Canvas();
 
 for (let i = 0; i < UMBRELLA_COUNT; i++) {
 
-    let _x = LED_COUNT * i,
-        _y = LED_COUNT * i;
+    let _x, _y, _z;
 
-    canvas.scene.add( new Umbrella( LED_COUNT, STRIP_COUNT, { x: _x, y: _y }) );
+    if (i === 0) {
+        _x = 0;
+        _y = LED_COUNT - 8;
+        _z = 0;
+    } else {
+        _x = (i % 2 === 1) ? -LED_COUNT : LED_COUNT;
+        _y = -LED_COUNT;
+        _z = (i % 2 === 1) ? -1 : 1;
+    }
+
+    let umbrella = new Umbrella( LED_COUNT, STRIP_COUNT, { x: _x, y: _y });
+    umbrella.rotation.z = _z;
+
+    canvas.scene.add( umbrella );
 
 }
 
