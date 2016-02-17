@@ -5,6 +5,7 @@ import Umbrella from '../Umbrella';
 const OrbitControls = require('three-orbit-controls')(THREE);
 
 class Canvas {
+
     constructor() {
 
         // scene and camera
@@ -25,10 +26,12 @@ class Canvas {
         // begin loop
         this.loop();
     }
+
     loop() {
         requestAnimationFrame( () => this.loop() );
         this.renderer.render( this.scene, this.camera );
     }
+
     moveCameraUpDwn( amount ) {
 
         let _y = Math.cos(this.radians(amount)) * this.cameraZoom,
@@ -38,6 +41,7 @@ class Canvas {
         this.camera.position.z = _z;
         this.camera.lookAt(new THREE.Vector3(0,0,0));
     }
+
     moveCameraLeftRight( amount ) {
 
         let _x = Math.cos(this.radians(amount)) * this.cameraZoom,
@@ -47,14 +51,17 @@ class Canvas {
         this.camera.position.z = _z;
         this.camera.lookAt(new THREE.Vector3(0,0,0));
     }
+
     setCameraZoom( zoom ) {
         this.cameraZoom = zoom;
         this.moveCameraUpDwn(0);
         this.moveCameraLeftRight(0);
     }
+
     radians( degrees ) {
         return degrees * (Math.PI / 180);
     }
+    
 }
 
 export default Canvas;

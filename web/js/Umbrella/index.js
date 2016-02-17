@@ -1,29 +1,37 @@
 import THREE from 'three';
 
 class Umbrella extends THREE.Object3D {
-    constructor( ledCount, stripCount ) {
-        super()
+
+    constructor( ledCount, stripCount, position = { x: 0, y: 0 } ) {
+        super();
 
         // setup variables
         this.ledCount      = ledCount;
         this.stripCount    = stripCount;
-        this.umbrellaCount = 1;
         this.ledDistance   = 1;
 
         // material & geometry
         this.material = {
             mesh: new THREE.MeshLambertMaterial( {color: 0xffffff, overdraw: 0.5} ),
-            line: new THREE.LineBasicMaterial({ color: 0x0000ff })
+            line: new THREE.LineBasicMaterial({ color: 0xdd00ff })
         };
+
+        this.light = {
+            point: new THREE.PointLight( 0xfffff, 1, 100 )
+        };
+
+        this.position.set( position.x, position.y, 0 );
 
         this.create();
     }
+
     simpleObject() {
         return {
             lights: [],
             arms:   []
         };
     }
+
     create() {
         let umbrella = this.simpleObject();
 
@@ -36,6 +44,7 @@ class Umbrella extends THREE.Object3D {
 
         return umbrella;
     }
+
     createArms( angle ) {
 
         let arm = new THREE.Geometry(),
@@ -60,6 +69,7 @@ class Umbrella extends THREE.Object3D {
 
         return arms;
     }
+
     createLights( angle ) {
 
         let x      = Math.cos(this.radians(angle)),
@@ -78,7 +88,7 @@ class Umbrella extends THREE.Object3D {
                 _angle = (( 90 / this.ledCount ) * i ) + 45,
                 _z     = Math.cos(this.radians(_angle)) * ( this.ledDistance * i );
 
-            lights.point[i] = new THREE.PointLight( 0xff0000, 1, 100 );
+            lights.point[i] = this.light.point;
             lights.point[i].position.set( _x, _y, _z );
 
             this.add( lights.point[i] );
@@ -91,9 +101,11 @@ class Umbrella extends THREE.Object3D {
 
         return lights;
     }
+
     radians( degrees ) {
         return degrees * (Math.PI / 180);
     }
+
 }
 
 export default Umbrella;
