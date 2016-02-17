@@ -34,4 +34,4 @@ for (let i = 0; i < UMBRELLA_COUNT; i++) {
 }
 
 ReactDOM.render(<UIAnimation ledCount={ LED_COUNT } stripCount={ STRIP_COUNT }/>, document.getElementById('ui-animation'));
-ReactDOM.render(<UI3D canvas={ canvas } />, document.getElementById('ui-3d'));
+// ReactDOM.render(<UI3D canvas={ canvas } />, document.getElementById('ui-3d'));

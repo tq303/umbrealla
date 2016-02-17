@@ -6,11 +6,11 @@ const OrbitControls = require('three-orbit-controls')(THREE);
 
 class Canvas {
 
-    constructor() {
+    constructor(width = 1024, height = 576) {
 
         // scene and camera
         this.scene    = new THREE.Scene();
-        this.camera   = new THREE.PerspectiveCamera( 75, 480 / 320, 1, 10000 );
+        this.camera   = new THREE.PerspectiveCamera( 75, width / height, 1, 10000 );
         this.camera.position.z = 100;
         this.camera.lookAt(new THREE.Vector3(0,0,0));
 
@@ -18,7 +18,7 @@ class Canvas {
 
         // initialize renderer
         this.renderer = new THREE.WebGLRenderer();
-        this.renderer.setSize( 480, 320 );
+        this.renderer.setSize( width, height );
 
         // add to DOM
         document.getElementById('umbrella').appendChild( this.renderer.domElement );
@@ -61,7 +61,7 @@ class Canvas {
     radians( degrees ) {
         return degrees * (Math.PI / 180);
     }
-    
+
 }
 
 export default Canvas;
