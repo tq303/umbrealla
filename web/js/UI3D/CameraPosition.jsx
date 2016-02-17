@@ -14,7 +14,7 @@ class CameraPosition extends React.Component {
         this.state = {
             angleX: 0,
             angleY: 0,
-            cameraZoom: this.props.umbrella.cameraZoom
+            cameraZoom: this.props.canvas.cameraZoom
         };
     }
     repeatAction( action ) {
@@ -24,24 +24,24 @@ class CameraPosition extends React.Component {
         window.clearInterval( this.interval );
     }
     moveCameraUp() {
-        this.props.umbrella.moveCameraUpDwn( this.cameraRotationY++ );
+        this.props.canvas.moveCameraUpDwn( this.cameraRotationY++ );
         this.setState({ angleY: this.cameraRotationY });
     }
     moveCameraDown() {
-        this.props.umbrella.moveCameraUpDwn( this.cameraRotationY-- );
+        this.props.canvas.moveCameraUpDwn( this.cameraRotationY-- );
         this.setState({ angleY: this.cameraRotationY });
     }
     moveCameraLeft() {
-        this.props.umbrella.moveCameraLeftRight( this.cameraRotationX++ );
+        this.props.canvas.moveCameraLeftRight( this.cameraRotationX++ );
         this.setState({ angleX: this.cameraRotationX });
     }
     moveCameraRight() {
-        this.props.umbrella.moveCameraLeftRight( this.cameraRotationX-- );
+        this.props.canvas.moveCameraLeftRight( this.cameraRotationX-- );
         this.setState({ angleX: this.cameraRotationX });
     }
     setCameraZoom(e) {
-        this.props.umbrella.setCameraZoom(e.target.value);
-        this.setState({ cameraZoom: this.props.umbrella.cameraZoom });
+        this.props.canvas.setCameraZoom(e.target.value);
+        this.setState({ cameraZoom: this.props.canvas.cameraZoom });
     }
     render() {
         return (
@@ -76,7 +76,7 @@ class CameraPosition extends React.Component {
 }
 
 CameraPosition.propTypes = {
-    umbrella: React.PropTypes.object.isRequired
+    canvas: React.PropTypes.object.isRequired
 };
 
 export default CameraPosition;
