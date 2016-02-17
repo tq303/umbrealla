@@ -115,6 +115,10 @@ class Umbrella extends THREE.Object3D {
         return degrees * (Math.PI / 180);
     }
 
+    animate( buffer ) {
+
+    }
+
 }
 
 export default Umbrella;
