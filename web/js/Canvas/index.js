@@ -6,7 +6,7 @@ const OrbitControls = require('three-orbit-controls')(THREE);
 
 class Canvas {
 
-    constructor(width = 1024, height = 576) {
+    constructor( width = 1024, height = 576 ) {
 
         // scene and camera
         this.scene    = new THREE.Scene();
