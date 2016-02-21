@@ -117,7 +117,6 @@ class Cycle extends React.Component {
 
                 <div>
 
-
                     <button onClick={ this.popCycle.bind(this) }>
                         <i className="fa fa-step-backward"></i>
                     </button>
@@ -133,7 +132,7 @@ class Cycle extends React.Component {
                 <div>
                     <input value={ this.state.ledPosition } onChange={ this.updateLedPosition.bind(this) } type="number" />
                 </div>
-                
+
                 <div>
 
                     <button onClick={ this.insertCycle.bind(this) }>

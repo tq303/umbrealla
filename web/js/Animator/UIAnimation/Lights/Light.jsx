@@ -2,19 +2,19 @@ import React from 'react';
 
 class Light extends React.Component {
 
-    constructor() {
+    constructor( props ) {
 
-        super();
+        super( props );
 
         this.iColour = '#777';
 
         this.state = {
-            active: false,
-            activeClass: '',
+            active: ( this.props.colour !== null ),
+            activeClass: ( this.props.colour !== null ) ? 'active' : '',
             activeStyle: {
-                color: this.iColour
+                color: ( this.props.colour !== null) ? this.props.colour : this.iColour
             },
-            colour: '#337ab7'
+            colour: this.props.colour
         }
     }
 
@@ -27,15 +27,6 @@ class Light extends React.Component {
                     color: ( state.active ) ? this.iColour : state.colour
                 }
             }
-        });
-    }
-
-    setColour( colour ) {
-        this.setState({
-            activeStyle: {
-                color: colour
-            },
-            colour: colour
         });
     }
 
