@@ -21,7 +21,7 @@ class Lights extends React.Component {
             <div id="ui-lights">
 
                 <div className="controls">
-                    
+
                 </div>
 
                 <div className="lights">

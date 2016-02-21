@@ -1,7 +1,5 @@
 import React from 'react';
 
-require('../../../styles/ui-animation.scss');
-
 import Cycle  from './Cycle';
 import Lights from './Lights';
 

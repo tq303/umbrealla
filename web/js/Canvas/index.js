@@ -62,6 +62,12 @@ class Canvas {
         return degrees * (Math.PI / 180);
     }
 
+    resize( width, height ) {
+        this.camera.aspect = width / height;
+		this.camera.updateProjectionMatrix();
+		this.renderer.setSize( width, height );
+    }
+
 }
 
 export default Canvas;
