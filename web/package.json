@@ -10,7 +10,6 @@
   "author": "oliver white",
   "license": "ISC",
   "dependencies": {
-    "bootstrap-sass": "^3.3.6",
     "font-awesome": "^4.5.0",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",

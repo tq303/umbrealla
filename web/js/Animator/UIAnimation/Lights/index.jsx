@@ -20,7 +20,11 @@ class Lights extends React.Component {
         return (
             <div id="ui-lights">
 
-                <div>
+                <div className="controls">
+                    
+                </div>
+
+                <div className="lights">
                     <p>{ this.lights[0] }</p>
                     <p>{ this.lights[7] }{ this.lights[1] }</p>
                     <p>{ this.lights[6] }{ this.lights[2] }</p>

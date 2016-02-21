@@ -8,61 +8,72 @@ h1 {
 
 #ui-lights {
 
-    & > p {
+    & > div {
 
-        display: table;
-        table-layout: fixed;
-        width: 100%;
-        max-width: 444px;
-        margin: 0 auto;
-        height: 44px;
-        line-height: 44px;
+        &.controls {
 
-        &:nth-child(1), &:nth-child(5) {
-            height: 22px;
-            line-height: 22px;
         }
 
-        &:nth-child(2), &:nth-child(4) {
-            padding: 0 80px;
-        }
+        &.lights {
 
-        &:nth-child(3) {
+            width: 444px;
 
-            height: 86px;
-            line-height: 86px;
-            padding: 0 116px;
+            & > p {
 
-            & > a {
-                &:first-child {
-                    text-align: left;
+                display: table;
+                table-layout: fixed;
+                width: 100%;
+                margin: 0 auto;
+                height: 44px;
+                line-height: 44px;
+                box-sizing: border-box;
+
+                &:nth-child(1), &:nth-child(5) {
+                    height: 22px;
+                    line-height: 22px;
                 }
-                &:last-child {
-                    text-align: right;
+
+                &:nth-child(2), &:nth-child(4) {
+                    padding: 0 80px;
                 }
-            }
-        }
 
-        & > a {
+                &:nth-child(3) {
 
-            display: table-cell;
-            vertical-align: middle;
-            text-align: center;
-            text-decoration: none;
-            font-size: 44px;
-            color: $gray-light;
+                    height: 90px;
+                    line-height: 86px;
+                    padding: 0 108px;
 
-            &:before {
-                content: "\25e6";
-            }
+                    & > a {
+                        &:first-child {
+                            text-align: left;
+                        }
+                        &:last-child {
+                            text-align: right;
+                        }
+                    }
+                }
 
-            &:hover {
-                cursor: pointer;
-            }
+                & > a {
 
-            &.active {
-                &:before {
-                	content: "\2022";
+                    display: table-cell;
+                    vertical-align: middle;
+                    text-align: center;
+                    text-decoration: none;
+                    font-size: 44px;
+
+                    &:before {
+                        content: "\25e6";
+                    }
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+
+                    &.active {
+                        &:before {
+                        	content: "\2022";
+                        }
+                    }
                 }
             }
         }

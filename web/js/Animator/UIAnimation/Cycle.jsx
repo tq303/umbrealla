@@ -25,7 +25,7 @@ class Cycle extends React.Component {
                 array[i][j] = 0;
             }
         }
-        
+
         return array;
     }
     defaultUndoCycle() {
@@ -116,34 +116,33 @@ class Cycle extends React.Component {
             <div id="cycle">
 
                 <div>
-                    <div className="btn-group">
-                        <button type="button" className="btn btn-default" onClick={ this.popCycle.bind(this) }>
-                            <i className="fa fa-step-backward"></i>
-                        </button>
-                        <button type="button" className="btn btn-default" onClick={ this.pushCycle.bind(this) }>
-                            <i className="fa fa-step-forward"></i>
-                        </button>
-                    </div>
+
+                    <button onClick={ this.popCycle.bind(this) }>
+                        <i className="fa fa-step-backward"></i>
+                    </button>
+                    <button onClick={ this.pushCycle.bind(this) }>
+                        <i className="fa fa-step-forward"></i>
+                    </button>
 
                     <span className="badge">{ this.state.cyclePosition }</span> / <span className="badge">{ this.state.animateCycles.length }</span>
                 </div>
 
                 <div>
-                    <input className="form-control" value={ this.state.ledPosition } onChange={ this.updateLedPosition.bind(this) } type="number" />
+                    <input value={ this.state.ledPosition } onChange={ this.updateLedPosition.bind(this) } type="number" />
                 </div>
 
                 <div>
-                    <div className="btn-group">
-                        <button type="button" className="btn btn-default" onClick={ this.insertCycle.bind(this) }>
-                            <i className="fa fa-plus"></i>
-                        </button>
-                        <button type="button" className="btn btn-default" disabled={ this.state.animateCycles.length === 1 } onClick={ this.deleteCycle.bind(this) }>
-                            <i className="fa fa-minus"></i>
-                        </button>
-                        <button type="button" className="btn btn-default" disabled={ !this.state.undoCycle.position } onClick={ this.undoDeleteCycle.bind(this) }>
-                            <i className="fa fa-undo"></i>
-                        </button>
-                    </div>
+
+                    <button onClick={ this.insertCycle.bind(this) }>
+                        <i className="fa fa-plus"></i>
+                    </button>
+                    <button disabled={ this.state.animateCycles.length === 1 } onClick={ this.deleteCycle.bind(this) }>
+                        <i className="fa fa-minus"></i>
+                    </button>
+                    <button disabled={ !this.state.undoCycle.position } onClick={ this.undoDeleteCycle.bind(this) }>
+                        <i className="fa fa-undo"></i>
+                    </button>
+
                 </div>
 
             </div>
