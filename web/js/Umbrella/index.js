@@ -42,6 +42,7 @@ class Umbrella extends THREE.Object3D {
 
         let umbrella = this.simpleUmbrellaObject();
 
+        // build arms and lights
         for (let i = 0; i < this.stripCount; i++) {
 
             umbrella.arms[i] = this.simpleArmObject();
@@ -50,6 +51,11 @@ class Umbrella extends THREE.Object3D {
             umbrella.arms[i].lights = this.createLights( (360 / this.stripCount) * i );
 
         }
+
+        // position point light to give illusion of lights
+        this.light.point.position.set( 0, 0, 10 );
+
+        this.add( this.light.point );
 
         return umbrella;
     }
@@ -83,10 +89,7 @@ class Umbrella extends THREE.Object3D {
 
         let x      = Math.cos(this.radians(angle)),
             y      = Math.sin(this.radians(angle)),
-            lights = {
-                sphere: [],
-                point:  []
-            },
+            lights = [],
             geometry = new THREE.SphereGeometry( .5, 8 , 6 );
 
         // loop each led and place in x,y,z axis
@@ -97,15 +100,10 @@ class Umbrella extends THREE.Object3D {
                 _angle = (( 90 / this.ledCount ) * i ) + 45,
                 _z     = Math.cos(this.radians(_angle)) * ( this.ledDistance * i );
 
-            lights.point[i] = this.light.point;
-            lights.point[i].position.set( _x, _y, _z );
+            lights[i] = new THREE.Mesh( geometry, this.material.mesh );
+            lights[i].position.set( _x, _y, _z );
 
-            this.add( lights.point[i] );
-
-            lights.sphere[i] = new THREE.Mesh( geometry, this.material.mesh );
-            lights.sphere[i].position.set( _x, _y, _z );
-
-            this.add( lights.sphere[i] );
+            this.add( lights[i] );
         }
 
         return lights;
