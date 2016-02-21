@@ -3,6 +3,7 @@ import React from 'react';
 class Light extends React.Component {
 
     constructor() {
+
         super();
 
         this.iColour = '#777';

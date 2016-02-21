@@ -1,22 +1,55 @@
+$border-colour: #9a9a9a;
+$font-colour: #fff;
+
 #ui-animation {
 
     position: absolute;
     top: 0;
     left: 0;
-    
-    #cycle {}
+    width: 444px;
+    border: 1px solid $border-colour;
+    color: $font-colour;
+
+    button, input, span {
+        background: transparent;
+        border: 1px solid $border-colour;
+        color: $font-colour;
+        padding: 10px;
+        box-sizing: border-box;
+        width: 33.3333%;
+    }
+
+    button {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    span {
+        // padding: 10px 9.5px;
+    }
+
+    input {
+        width: 100%;
+    }
+
+    #cycle {
+        width: 100%;
+    }
 
     #ui-lights {
 
         & > div {
 
             &.controls {
-
+                button {
+                    width: 50%;
+                }
             }
 
             &.lights {
 
-                width: 444px;
+                width: 100%;
 
                 & > p {
 

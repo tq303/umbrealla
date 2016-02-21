@@ -10,7 +10,7 @@ class Umbrella extends THREE.Object3D {
 
         // material & geometry
         this.material = {
-            mesh: new THREE.MeshLambertMaterial( {color: 0xffffff, overdraw: 0.5} ),
+            mesh: new THREE.MeshLambertMaterial( {color: 0xffffff } ),
             line: new THREE.LineBasicMaterial({ color: 0xdd00ff })
         };
 
