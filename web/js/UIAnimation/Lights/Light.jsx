@@ -1,11 +1,11 @@
 import React from 'react';
 
-class Led extends React.Component {
+class Light extends React.Component {
     render() {
         return (
-            <h1></h1>
+            <a></a>
         )
     }
 }
 
-export default Led
+export default Light

@@ -68,7 +68,7 @@ class Umbrella extends THREE.Object3D {
             arms;
 
         // loop each led and place in x,y,z axis
-        for (let i = 0; i < this.ledCount; i++) {
+        for (let i = 1; i <= this.ledCount; i++) {
 
             let _x     = x * ( this.ledDistance * i ),
                 _y     = y * ( this.ledDistance * i ),
@@ -93,7 +93,7 @@ class Umbrella extends THREE.Object3D {
             geometry = new THREE.SphereGeometry( .5, 8 , 6 );
 
         // loop each led and place in x,y,z axis
-        for (let i = 0; i < this.ledCount; i++) {
+        for (let i = 1; i <= this.ledCount; i++) {
 
             let _x     = x * ( this.ledDistance * i ),
                 _y     = y * ( this.ledDistance * i ),

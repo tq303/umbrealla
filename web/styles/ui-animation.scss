@@ -4,6 +4,62 @@ h1 {
     font-size: 24px;
 }
 
-#cycle {
-    
+#cycle {}
+
+#ui-lights {
+    & > p {
+
+        display: table;
+        table-layout: fixed;
+        width: 100%;
+        max-width: 444px;
+        margin: 0 auto;
+        height: 44px;
+        line-height: 44px;
+
+        &:nth-child(1), &:nth-child(5) {
+            height: 22px;
+            line-height: 22px;
+        }
+
+        &:nth-child(2), &:nth-child(4) {
+            padding: 0 80px;
+        }
+
+        &:nth-child(3) {
+
+            height: 86px;
+            line-height: 86px;
+            padding: 0 116px;
+
+            & > a {
+                &:first-child {
+                    text-align: left;
+                }
+                &:last-child {
+                    text-align: right;
+                }
+            }
+        }
+
+        & > a {
+
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+            text-decoration: none;
+            font-size: 44px;
+            color: $gray-light;
+
+            &:before {
+                content: "\25e6";
+            }
+
+            &.active {
+                &:before {
+                	content: "\2022";
+                }
+            }
+        }
+    }
 }
