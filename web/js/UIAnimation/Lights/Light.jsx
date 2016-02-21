@@ -35,7 +35,7 @@ class Light extends React.Component {
                 color: colour
             },
             colour: colour
-        })
+        });
     }
 
     render() {

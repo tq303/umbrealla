@@ -10,7 +10,7 @@ class UIAnimation extends React.Component {
         return (
             <div>
                 <Cycle ledCount={ this.props.ledCount } stripCount={ this.props.stripCount }/>
-                <Lights/>
+                <Lights stripCount={ this.props.stripCount }/>
             </div>
         )
     }

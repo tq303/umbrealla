@@ -7,6 +7,11 @@ h1 {
 #cycle {}
 
 #ui-lights {
+
+    & > .controls {
+        @extend .row;    
+    }
+
     & > p {
 
         display: table;
