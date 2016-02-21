@@ -55,6 +55,10 @@ h1 {
                 content: "\25e6";
             }
 
+            &:hover {
+                cursor: pointer;
+            }
+
             &.active {
                 &:before {
                 	content: "\2022";
