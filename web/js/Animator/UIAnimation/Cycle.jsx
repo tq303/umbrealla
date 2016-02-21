@@ -18,15 +18,14 @@ class Cycle extends React.Component {
     }
     animateArray() {
         let array  = [];
-        let strips = 8;
-        let leds   = 30;
 
-        for (let i = 0; i < strips; i++) {
+        for (let i = 0; i < window.STRIP_COUNT; i++) {
             array[i] = [];
-            for (let j = 0; j < leds; j++) {
+            for (let j = 0; j < window.LED_COUNT; j++) {
                 array[i][j] = 0;
             }
         }
+        
         return array;
     }
     defaultUndoCycle() {
@@ -106,7 +105,7 @@ class Cycle extends React.Component {
         return this.state.animateCycles[( this.state.cyclePosition - 1 )];
     }
     updateLedPosition( e ) {
-        if (e.target.value >= 1 && e.target.value <= this.props.ledCount) {
+        if (e.target.value >= 1 && e.target.value <= window.LED_COUNT) {
             this.setState({
                 ledPosition: e.target.value
             });
@@ -151,10 +150,5 @@ class Cycle extends React.Component {
         )
     }
 }
-
-Cycle.propTypes = {
-    ledCount: React.PropTypes.number.isRequired,
-    stripCount: React.PropTypes.number.isRequired
-};
 
 export default Cycle;

@@ -18,7 +18,7 @@ class UI extends React.Component {
         return (
             <div>
                 <input type='text' onChange={ this.update.bind(this) } />
-                <h1>{this.state.title}</h1>
+                <h1>{ this.state.title }</h1>
             </div>
         )
     }

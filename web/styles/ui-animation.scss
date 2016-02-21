@@ -8,10 +8,6 @@ h1 {
 
 #ui-lights {
 
-    & > .controls {
-        @extend .row;    
-    }
-
     & > p {
 
         display: table;
