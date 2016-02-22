@@ -8,7 +8,9 @@ import React from 'react';
 
 class Cycle extends React.Component {
     constructor( props ) {
+
         super( props );
+
         this.state = {
             animateCycles: [this.animateArray()],
             cyclePosition: 1,
@@ -111,6 +113,29 @@ class Cycle extends React.Component {
             });
         }
     }
+    increaseLed() {
+        console.log('asdfsadf');
+        if (this.state.ledPosition <= 1) {
+            this.setState({
+                ledPosition: 1
+            })
+        } else {
+            this.setState({
+                ledPosition: this.state.ledPosition - 1
+            })
+        }
+    }
+    decreaseLed() {
+        if (this.state.ledPosition >= window.LED_COUNT) {
+            this.setState({
+                ledPosition: window.LED_COUNT
+            })
+        } else {
+            this.setState({
+                ledPosition: this.state.ledPosition + 1
+            })
+        }
+    }
     render() {
         return (
             <div id="cycle">
@@ -129,8 +154,10 @@ class Cycle extends React.Component {
                 </div>
 
 
-                <div>
-                    <input value={ this.state.ledPosition } onChange={ this.updateLedPosition.bind(this) } type="number" />
+                <div className="led-position">
+                    <input value={ this.state.ledPosition } type="number" />
+                    <span onClick={ this.decreaseLed.bind(this) }><i className="fa fa-arrow-up"></i></span>
+                    <span onClick={ this.increaseLed.bind(this) }><i className="fa fa-arrow-down"></i></span>
                 </div>
 
                 <div>

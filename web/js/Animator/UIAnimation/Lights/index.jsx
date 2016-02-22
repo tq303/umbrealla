@@ -15,7 +15,8 @@ class Lights extends React.Component {
         }
 
         this.state = {
-            lights: lights
+            lights: lights,
+            integerColour: 0
         };
     }
 
@@ -35,6 +36,29 @@ class Lights extends React.Component {
         });
     }
 
+    increaseColour() {
+        if (this.state.integerColour <= 0) {
+            this.setState({
+                integerColour: 0
+            })
+        } else {
+            this.setState({
+                integerColour: this.state.integerColour - 1
+            })
+        }
+    }
+    decreaseColour() {
+        if (this.state.integerColour >= 254) {
+            this.setState({
+                integerColour: 254
+            })
+        } else {
+            this.setState({
+                integerColour: this.state.integerColour + 1
+            })
+        }
+    }
+
     render() {
         return (
             <div id="ui-lights">
@@ -50,6 +74,11 @@ class Lights extends React.Component {
                 <div className="controls">
                     <button onClick={ this.activateAll.bind(this) }><i className="fa fa-sun-o"></i></button>
                     <button onClick={ this.deActivateAll.bind(this) }><i className="fa fa-circle-thin"></i></button>
+                </div>
+                <div className="set-colour">
+                    <input value={ this.state.integerColour } type="number" />
+                    <span onClick={ this.decreaseColour.bind(this) }><i className="fa fa-arrow-up"></i></span>
+                    <span onClick={ this.increaseColour.bind(this) }><i className="fa fa-arrow-down"></i></span>
                 </div>
 
             </div>

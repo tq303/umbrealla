@@ -25,16 +25,25 @@ $font-colour: #fff;
         }
     }
 
-    span {
-        // padding: 10px 9.5px;
-    }
-
     input {
         width: 100%;
     }
 
     #cycle {
+
         width: 100%;
+
+        .led-position {
+            input {
+                width: 66.666666%;
+            }
+            span {
+                width: 16.666666665%;
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
     }
 
     #ui-lights {
@@ -42,7 +51,7 @@ $font-colour: #fff;
         & > div {
 
             &.controls {
-                button {
+                button, input {
                     width: 50%;
                 }
             }
@@ -107,6 +116,18 @@ $font-colour: #fff;
                             	content: "\2022";
                             }
                         }
+                    }
+                }
+            }
+
+            &.set-colour {
+                input {
+                    width:50%;
+                }
+                span {
+                    width: 25%;
+                    &:hover {
+                        cursor: pointer;
                     }
                 }
             }
