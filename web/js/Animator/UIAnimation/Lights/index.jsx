@@ -21,13 +21,17 @@ class Lights extends React.Component {
 
     activateAll() {
         this.setState(( state )=> {
-            lights: state.lights.map(()=> 'red')
+            return {
+                lights: state.lights.map(()=> 'red')
+            };
         });
     }
 
     deActivateAll() {
         this.setState(( state )=> {
-            lights: state.lights.map(()=> null)
+            return {
+                lights: state.lights.map(()=> null)
+            };
         });
     }
 
