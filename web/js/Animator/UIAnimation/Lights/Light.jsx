@@ -33,18 +33,17 @@ class Light extends React.Component {
 
     componentWillReceiveProps( nextProps ) {
 
-        console.log(nextProps.updateColour);
-        
         this.setState(( state )=> {
             return {
-                active: ( nextProps.colour !== null ),
-                activeClass: ( nextProps.colour !== null ) ? 'active' : '',
-                activeStyle: {
-                    color: ( nextProps.colour !== null) ? nextProps.updateColour : this.iColour
-                },
+                // active: ( nextProps.colour !== null ),
+                // activeClass: ( nextProps.colour !== null ) ? 'active' : '',
+                // activeStyle: {
+                    // color: ( nextProps.colour !== null) ? nextProps.updateColour : this.iColour
+                // },
                 colour: nextProps.updateColour
             };
         });
+        
     }
 
     render() {

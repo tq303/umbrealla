@@ -38,7 +38,6 @@ class Lights extends React.Component {
     }
 
     colourChange( colour ) {
-        console.log(colour);
         this.setState({ integerColour: `#${colour.hex}` });
     }
 
