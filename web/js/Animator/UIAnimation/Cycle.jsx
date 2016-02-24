@@ -155,7 +155,7 @@ class Cycle extends React.Component {
 
 
                 <div className="led-position">
-                    <input value={ this.state.ledPosition } type="number" />
+                    <input value={ this.state.ledPosition } type="text" />
                     <span onClick={ this.decreaseLed.bind(this) }><i className="fa fa-arrow-up"></i></span>
                     <span onClick={ this.increaseLed.bind(this) }><i className="fa fa-arrow-down"></i></span>
                 </div>

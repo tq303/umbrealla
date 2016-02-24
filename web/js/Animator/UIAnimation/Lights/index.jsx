@@ -1,4 +1,5 @@
 import React from 'react';
+import ColorPicker from 'react-color';
 
 import Light from './Light';
 
@@ -23,7 +24,7 @@ class Lights extends React.Component {
     activateAll() {
         this.setState(( state )=> {
             return {
-                lights: state.lights.map(()=> 'red')
+                lights: state.lights.map(()=> this.state.integerColour)
             };
         });
     }
@@ -36,27 +37,9 @@ class Lights extends React.Component {
         });
     }
 
-    increaseColour() {
-        if (this.state.integerColour <= 0) {
-            this.setState({
-                integerColour: 0
-            })
-        } else {
-            this.setState({
-                integerColour: this.state.integerColour - 1
-            })
-        }
-    }
-    decreaseColour() {
-        if (this.state.integerColour >= 254) {
-            this.setState({
-                integerColour: 254
-            })
-        } else {
-            this.setState({
-                integerColour: this.state.integerColour + 1
-            })
-        }
+    colourChange( colour ) {
+        console.log(colour);
+        this.setState({ integerColour: `#${colour.hex}` });
     }
 
     render() {
@@ -64,11 +47,11 @@ class Lights extends React.Component {
             <div id="ui-lights">
 
                 <div className="lights">
-                    <p><Light colour={ this.state.lights[0] }/></p>
-                    <p><Light colour={ this.state.lights[7] }/><Light colour={ this.state.lights[1] }/></p>
-                    <p><Light colour={ this.state.lights[6] }/><Light colour={ this.state.lights[2] }/></p>
-                    <p><Light colour={ this.state.lights[5] }/><Light colour={ this.state.lights[3] }/></p>
-                    <p><Light colour={ this.state.lights[4] }/></p>
+                    <p><Light updateColour={ this.state.integerColour } colour={ this.state.lights[0] }/></p>
+                    <p><Light updateColour={ this.state.integerColour } colour={ this.state.lights[7] }/><Light updateColour={ this.state.integerColour } colour={ this.state.lights[1] }/></p>
+                    <p><Light updateColour={ this.state.integerColour } colour={ this.state.lights[6] }/><Light updateColour={ this.state.integerColour } colour={ this.state.lights[2] }/></p>
+                    <p><Light updateColour={ this.state.integerColour } colour={ this.state.lights[5] }/><Light updateColour={ this.state.integerColour } colour={ this.state.lights[3] }/></p>
+                    <p><Light updateColour={ this.state.integerColour } colour={ this.state.lights[4] }/></p>
                 </div>
 
                 <div className="controls">
@@ -76,9 +59,7 @@ class Lights extends React.Component {
                     <button onClick={ this.deActivateAll.bind(this) }><i className="fa fa-circle-thin"></i></button>
                 </div>
                 <div className="set-colour">
-                    <input value={ this.state.integerColour } type="number" />
-                    <span onClick={ this.decreaseColour.bind(this) }><i className="fa fa-arrow-up"></i></span>
-                    <span onClick={ this.increaseColour.bind(this) }><i className="fa fa-arrow-down"></i></span>
+                    <ColorPicker type="slider" color={ this.state.integerColour } onChange={ this.colourChange.bind(this) } />
                 </div>
 
             </div>

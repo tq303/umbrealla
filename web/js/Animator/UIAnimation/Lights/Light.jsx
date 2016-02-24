@@ -32,14 +32,17 @@ class Light extends React.Component {
     }
 
     componentWillReceiveProps( nextProps ) {
+
+        console.log(nextProps.updateColour);
+        
         this.setState(( state )=> {
             return {
                 active: ( nextProps.colour !== null ),
                 activeClass: ( nextProps.colour !== null ) ? 'active' : '',
                 activeStyle: {
-                    color: ( nextProps.colour !== null) ? nextProps.colour : this.iColour
+                    color: ( nextProps.colour !== null) ? nextProps.updateColour : this.iColour
                 },
-                colour: nextProps.colour
+                colour: nextProps.updateColour
             };
         });
     }
@@ -50,5 +53,9 @@ class Light extends React.Component {
         )
     }
 }
+
+Light.PropTypes = {
+    updateColour: React.PropTypes.number.isRequired
+};
 
 export default Light
