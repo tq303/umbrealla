@@ -19,6 +19,7 @@ class Light extends React.Component {
     }
 
     toggleActive() {
+        
         this.setState(( state )=> {
             return {
                 active: !state.active,
@@ -29,6 +30,8 @@ class Light extends React.Component {
                 colour: this.props.colour
             }
         });
+
+        this.props.updateParent( this.props.index, this.props.updateColour );
     }
 
     componentWillReceiveProps( nextProps ) {
@@ -40,10 +43,10 @@ class Light extends React.Component {
                 // activeStyle: {
                     // color: ( nextProps.colour !== null) ? nextProps.updateColour : this.iColour
                 // },
-                colour: nextProps.updateColour
+                colour: `#${nextProps.updateColour}`
             };
         });
-        
+
     }
 
     render() {

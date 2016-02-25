@@ -6,7 +6,10 @@ import Light from './Light';
 class Lights extends React.Component {
 
     constructor( params ) {
+
         super( params );
+
+        // assign <Light/> to this.lights array
 
         // assign <Light/> to this.lights array
         let lights = [];
@@ -17,14 +20,17 @@ class Lights extends React.Component {
 
         this.state = {
             lights: lights,
-            integerColour: 0
+            hexColour: '000000'
         };
     }
 
     activateAll() {
+
+        console.log(this.state.lights);
+
         this.setState(( state )=> {
             return {
-                lights: state.lights.map(()=> this.state.integerColour)
+                lights: state.lights.map(()=> this.state.hexColour)
             };
         });
     }
@@ -38,7 +44,11 @@ class Lights extends React.Component {
     }
 
     colourChange( colour ) {
-        this.setState({ integerColour: `#${colour.hex}` });
+        this.setState({ hexColour: colour.hex });
+    }
+
+    update( index,  hexColour ) {
+        this.props.updateParent( index, hexColour );
     }
 
     render() {
@@ -46,19 +56,20 @@ class Lights extends React.Component {
             <div id="ui-lights">
 
                 <div className="lights">
-                    <p><Light updateColour={ this.state.integerColour } colour={ this.state.lights[0] }/></p>
-                    <p><Light updateColour={ this.state.integerColour } colour={ this.state.lights[7] }/><Light updateColour={ this.state.integerColour } colour={ this.state.lights[1] }/></p>
-                    <p><Light updateColour={ this.state.integerColour } colour={ this.state.lights[6] }/><Light updateColour={ this.state.integerColour } colour={ this.state.lights[2] }/></p>
-                    <p><Light updateColour={ this.state.integerColour } colour={ this.state.lights[5] }/><Light updateColour={ this.state.integerColour } colour={ this.state.lights[3] }/></p>
-                    <p><Light updateColour={ this.state.integerColour } colour={ this.state.lights[4] }/></p>
+                    <p><Light updateParent={ this.update.bind(this) } updateColour={ this.state.hexColour } colour={ this.state.lights[0] } index={ 0 }/></p>
+                    <p><Light updateParent={ this.update.bind(this) } updateColour={ this.state.hexColour } colour={ this.state.lights[7] } index={ 7 }/><Light updateParent={ this.update.bind(this) } updateColour={ this.state.hexColour } colour={ this.state.lights[1] } index={ 1 }/></p>
+                    <p><Light updateParent={ this.update.bind(this) } updateColour={ this.state.hexColour } colour={ this.state.lights[6] } index={ 6 }/><Light updateParent={ this.update.bind(this) } updateColour={ this.state.hexColour } colour={ this.state.lights[2] } index={ 2 }/></p>
+                    <p><Light updateParent={ this.update.bind(this) } updateColour={ this.state.hexColour } colour={ this.state.lights[5] } index={ 5 }/><Light updateParent={ this.update.bind(this) } updateColour={ this.state.hexColour } colour={ this.state.lights[3] } index={ 3 }/></p>
+                    <p><Light updateParent={ this.update.bind(this) } updateColour={ this.state.hexColour } colour={ this.state.lights[4] } index={ 4 }/></p>
                 </div>
 
                 <div className="controls">
                     <button onClick={ this.activateAll.bind(this) }><i className="fa fa-sun-o"></i></button>
                     <button onClick={ this.deActivateAll.bind(this) }><i className="fa fa-circle-thin"></i></button>
                 </div>
+
                 <div className="set-colour">
-                    <ColorPicker type="slider" color={ this.state.integerColour } onChange={ this.colourChange.bind(this) } />
+                    <ColorPicker type="slider" color={ this.state.hexColour } onChange={ this.colourChange.bind(this) } />
                 </div>
 
             </div>

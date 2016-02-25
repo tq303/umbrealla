@@ -10,7 +10,11 @@ class Animator {
         this.frames    = [];
         this.umbrellas = umbrellas;
 
-        ReactDOM.render(<UIAnimation frames={ this.frames }/>, document.getElementById('ui-animation'));
+        ReactDOM.render(<UIAnimation frames={ this.frames } updateParent={ this.update.bind(this) } />, document.getElementById('ui-animation'));
+    }
+
+    update( frames ) {
+        console.log( frames )
     }
 
 }

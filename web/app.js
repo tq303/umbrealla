@@ -1,4 +1,4 @@
-import Canvas from './js/Canvas'
+import Canvas   from './js/Canvas'
 import Umbrella from './js/Umbrella'
 import Animator from './js/Animator'
 
@@ -6,7 +6,7 @@ require('./styles/style.scss');
 
 window.LED_COUNT      = 30;
 window.STRIP_COUNT    = 8;
-window.UMBRELLA_COUNT = 3;
+window.UMBRELLA_COUNT = 1;
 
 let width  = window.innerWidth,
     height = window.innerHeight;
@@ -22,5 +22,7 @@ let animator = new Animator( umbrellas );
 
 // resize logic
 window.addEventListener("resize", ()=> {
+
     canvas.resize( window.innerWidth, window.innerHeight )
+
 }, false);
