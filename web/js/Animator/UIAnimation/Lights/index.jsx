@@ -9,25 +9,13 @@ class Lights extends React.Component {
 
         super( params );
 
-        // assign <Light/> to this.lights array
-
-        // assign <Light/> to this.lights array
-        let lights = [];
-
-        for (let i = 0; i < window.STRIP_COUNT; i++) {
-            lights[i] = null;
-        }
-
         this.state = {
-            lights: lights,
+            lights: this.props.lights,
             hexColour: '000000'
         };
     }
 
     activateAll() {
-
-        console.log(this.state.lights);
-
         this.setState(( state )=> {
             return {
                 lights: state.lights.map(()=> this.state.hexColour)
@@ -45,6 +33,10 @@ class Lights extends React.Component {
 
     colourChange( colour ) {
         this.setState({ hexColour: colour.hex });
+    }
+
+    componentWillReceiveProps( nextProps ) {
+        console.log( nextProps );
     }
 
     update( index,  hexColour ) {

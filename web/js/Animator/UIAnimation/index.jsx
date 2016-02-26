@@ -14,8 +14,11 @@ class UIAnimation extends React.Component {
             frames: this.props.frames,
             cyclePosition: 1,
             undoFrame: this.defaultUndoFrame(),
-            ledPosition: 1
+            ledPosition: 0,
+            currentLights: []
         };
+
+        this.state.currentLights = this.getSelectedLights();
     }
 
     animateArray() {
@@ -41,7 +44,10 @@ class UIAnimation extends React.Component {
     pushFrame() {
         if (this.state.frames.length === this.state.cyclePosition) {
             this.setState((state) => {
-                frames: state.frames.push( this.getLastFrame() )
+                return {
+                    frames: state.frames.push( this.getLastFrame() ),
+                    currentLights: this.getSelectedLights()
+                }
             });
         }
         this.setState((state) => {
@@ -54,7 +60,10 @@ class UIAnimation extends React.Component {
     popFrame() {
         if (this.state.cyclePosition > 1) {
             this.setState((state) => {
-                cyclePosition: state.cyclePosition--
+                return {
+                    cyclePosition: state.cyclePosition--,
+                    currentLights: this.getSelectedLights()
+                }
             });
         }
 
@@ -63,7 +72,10 @@ class UIAnimation extends React.Component {
 
     insertFrame() {
         this.setState((state) => {
-            frames: state.frames.splice( (state.cyclePosition - 1), 0, this.getCurrentFrame() )
+            return {
+                frames: state.frames.splice( (state.cyclePosition - 1), 0, this.getCurrentFrame() ),
+                currentLights: this.getSelectedLights()
+            }
         });
 
         this.props.updateParent( this.frames );
@@ -81,7 +93,8 @@ class UIAnimation extends React.Component {
                         position: (state.cyclePosition - 1),
                         cycle: this.getCurrentFrame()
                     },
-                    frames: newFrames
+                    frames: newFrames,
+                    currentLights: this.getSelectedLights()
                 }
             });
 
@@ -105,7 +118,8 @@ class UIAnimation extends React.Component {
             this.setState((state) => {
                 return {
                     frames: newFrames,
-                    undoFrame: this.defaultUndoFrame()
+                    undoFrame: this.defaultUndoFrame(),
+                    currentLights: this.getSelectedLights()
                 }
             });
 
@@ -126,35 +140,21 @@ class UIAnimation extends React.Component {
         return this.state.frames[( this.state.cyclePosition - 1 )];
     }
 
-    updateLedPosition( e ) {
-        if (e.target.value >= 1 && e.target.value <= window.LED_COUNT) {
+    decreaseLed() {
+        if (( this.state.ledPosition - 1 ) >= 0) {
             this.setState({
-                ledPosition: e.target.value
+                ledPosition: this.state.ledPosition - 1,
+                currentLights: this.getSelectedLights()
             });
         }
     }
 
     increaseLed() {
-        if (this.state.ledPosition <= 1) {
+        if (( this.state.ledPosition + 1 ) <= window.LED_COUNT) {
             this.setState({
-                ledPosition: 1
-            })
-        } else {
-            this.setState({
-                ledPosition: this.state.ledPosition - 1
-            })
-        }
-    }
-
-    decreaseLed() {
-        if (this.state.ledPosition >= window.LED_COUNT) {
-            this.setState({
-                ledPosition: window.LED_COUNT
-            })
-        } else {
-            this.setState({
-                ledPosition: this.state.ledPosition + 1
-            })
+                ledPosition: this.state.ledPosition + 1,
+                currentLights: this.getSelectedLights()
+            });
         }
     }
 
@@ -170,7 +170,49 @@ class UIAnimation extends React.Component {
     }
 
     update( index,  hexColour ) {
-        console.log( index,  hexColour );
+
+        this.setState((state)=> {
+
+            // get current frame
+            let currentFrame = this.state.frames[ this.state.frames.indexOf( this.getCurrentFrameRef() ) ];
+
+            // remap strips
+            currentFrame = currentFrame.map(( strip, sIndex )=> {
+
+                // check strip index
+                if ( sIndex === index ) {
+
+                    // remap colours of strip
+                    return strip.map(( ledColour, lIndex )=> {
+
+                        if ( lIndex === this.state.ledPosition ) {
+
+                            return hexColour;
+
+                        } else {
+
+                            return ledColour;
+
+                        }
+
+                    });
+
+                } else {
+
+                    return strip;
+
+                }
+            });
+
+            // update current frame
+            this.state.frames[ this.state.frames.indexOf( this.getCurrentFrameRef() ) ] = currentFrame;
+
+            return {
+                "frames": state.frames
+            };
+        });
+
+        this.props.updateParent( this.state.frames );
     }
 
     render() {
@@ -206,7 +248,7 @@ class UIAnimation extends React.Component {
                     <span onClick={ this.increaseLed.bind(this) }><i className="fa fa-arrow-down"></i></span>
                 </div>
 
-                <Lights updateParent={ this.update.bind(this) }/>
+                <Lights updateParent={ this.update.bind(this) } lights={ this.state.currentLights }/>
 
             </div>
         )

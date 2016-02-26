@@ -14,7 +14,7 @@ class Animator {
     }
 
     update( frames ) {
-        console.log( frames )
+        console.log( frames );
     }
 
 }
